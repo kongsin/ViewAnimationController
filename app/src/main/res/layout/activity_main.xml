@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.kognsin.animate.MainActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/action"
+        android:textColor="#FFFFFF"
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Title bar"/>
+
+    <LinearLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/top"
+            android:textColor="#FFFFFF"
+            android:background="@color/colorPrimaryDark"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Header"/>
+
+        <ImageView
+            android:id="@+id/img"
+            android:background="@color/colorPrimary"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:adjustViewBounds="true"
+            android:src="@mipmap/ic_launcher"/>
+
+        <TextView
+            android:id="@+id/bottom"
+            android:textColor="#FFFFFF"
+            android:background="@color/colorPrimaryDark"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Footer"/>
+    </LinearLayout>
+
+</LinearLayout>
