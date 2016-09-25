@@ -29,9 +29,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(final View v) {
         AnimationControl.with(action).y(-action.getHeight()).start().gone();
         AnimationControl.with(top).y(0).startDelayed(50);
-        AnimationControl.with(img).y(top.getHeight() - ((img.getHeight() - (img.getHeight() * 0.4F)) / 2)).startDelayed(50);
-        AnimationControl.with(img).scaleX(0.4F).scaleY(0.4F).startDelayed(200);
-        AnimationControl.with(bottpm).y(top.getHeight() + (img.getHeight() * 0.4F)).startDelayed(300);
+        AnimationControl.with(img).scaleX(0.4F).scaleY(0.4F).stackToBottom(top).startDelayed(200);
+        AnimationControl.with(bottpm).stackToBottom(img).destinationWasResized(img.getHeight(), 0.4F).startDelayed(300);
         new Handler(getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -49,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /*        AnimationControl.with(action).y(-action.getHeight()).start().gone();
         AnimationControl.with(top).y(0).startDelayed(50);
         AnimationControl.with(img).y(top.getHeight() - ((img.getHeight() - (img.getHeight() * 0.4F)) / 2)).startDelayed(50);
-        AnimationControl.with(img).scaleX(0.4F).scaleY(0.4F).startDelayed(200);
+        AnimationControl.with(img).X(0.4F).Y(0.4F).startDelayed(200);
         AnimationControl.with(bottpm).y(top.getHeight() + (img.getHeight() * 0.4F)).startDelayed(300);*/
 
 }

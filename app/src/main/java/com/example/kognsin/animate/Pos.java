@@ -1,5 +1,7 @@
 package com.example.kognsin.animate;
 
+import android.graphics.Rect;
+
 /**
  * Created by kognsin on 9/24/2016.
  */
@@ -11,6 +13,11 @@ public class Pos {
     public Pos(int[] pos) {
         setX(pos[0]);
         setY(pos[1]);
+    }
+
+    public Pos(Rect rect) {
+        setX(rect.left);
+        setY(rect.bottom);
     }
 
     public float getX() {

@@ -1,5 +1,6 @@
 package com.example.kognsin.animate;
 
+import android.graphics.Rect;
 import android.view.View;
 
 /**
@@ -9,10 +10,15 @@ import android.view.View;
 public class ViewUtils {
 
     public static Pos getActualViewPosition(View view){
-        int[] pos = new int[2];
+        Rect rect = new Rect();
         view.requestLayout();
-        view.getLocationOnScreen(pos);
-        return new Pos(pos);
+        view.getLocalVisibleRect(rect);
+        return new Pos(rect);
+    }
+
+    public static float getAnimatedSize(View imageView, float resizesWith){
+        float size = imageView.getHeight() * resizesWith;
+        return imageView.getHeight()-size;
     }
 
 }

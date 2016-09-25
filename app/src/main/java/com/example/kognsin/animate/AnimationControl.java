@@ -15,6 +15,8 @@ public class AnimationControl {
     private ViewPropertyAnimator animator;
     private View mView;
     private Float scaleX, scaleY;
+    private static final String TAG = "AnimationControl";
+    private AnimatorObj animatorObj = new AnimatorObj();
 
     public static AnimationControl with(View view) {
         AnimationControl animateControl = new AnimationControl();
@@ -119,18 +121,37 @@ public class AnimationControl {
         return new Start(mView);
     }
 
-    public AnimationControl stackToBottom(View anotherView){
-        animator.y(anotherView.getBottom());
+    public AnimationControl stackToBottom(final View anotherView){
+        if (mView instanceof ImageView){
+            Pos ints = ViewUtils.getActualViewPosition(anotherView);
+            if (scaleY != null){
+                animatorObj.Y = ints.getY() - (ViewUtils.getAnimatedSize(mView, scaleY) * 0.5F);
+            } else {
+                animatorObj.Y = ints.getY();
+            }
+        } else {
+            animatorObj.Y = anotherView.getY();
+        }
+        animator.y(animatorObj.Y);
+        return this;
+    }
+
+    public AnimationControl destinationWasResized(float fromY, float scaledW){
+        float resTo = (fromY * scaledW);
+        animatorObj.Y -= (fromY-resTo);
+        animator.y(animatorObj.Y);
         return this;
     }
 
     public AnimationControl y(float value){
-        animator.y(value);
+        animatorObj.Y = value;
+        animator.y(animatorObj.Y);
         return this;
     }
 
     public AnimationControl x(float value){
-        animator.x(value);
+        animatorObj.X = value;
+        animator.x(animatorObj.X);
         return this;
     }
 
@@ -158,6 +179,11 @@ public class AnimationControl {
 
     public interface Then {
         void animated(View view, Pos pos);
+    }
+
+    public class AnimatorObj{
+        public float X;
+        public float Y;
     }
 
 }
