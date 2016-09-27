@@ -1,4 +1,4 @@
-package com.example.kognsin.animate;
+package com.example.kanimationcontroller;
 
 import android.view.View;
 
@@ -6,20 +6,24 @@ import android.view.View;
  * Created by kognsin on 9/27/2016.
  */
 
-public class TransY implements IAnimateSet{
+public class Y implements IAnimateSet{
     private float value;
 
-    public TransY(float value){
+    public float getValue() {
+        return value;
+    }
+
+    public Y(float value){
         this.value = value;
     }
 
     @Override
     public void setView(View view) {
-        view.setTranslationY(value);
+        view.setY(value);
     }
 
     @Override
     public void animateView(View view) {
-        view.animate().translationY(value);
+        view.animate().y(value);
     }
 }

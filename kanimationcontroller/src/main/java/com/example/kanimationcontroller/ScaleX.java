@@ -1,4 +1,4 @@
-package com.example.kognsin.animate;
+package com.example.kanimationcontroller;
 
 import android.view.View;
 
@@ -6,24 +6,24 @@ import android.view.View;
  * Created by kognsin on 9/27/2016.
  */
 
-public class X implements IAnimateSet{
+public class ScaleX implements IAnimateSet{
     private float value;
 
     public float getValue() {
         return value;
     }
 
-    public X(float value){
+    public ScaleX(float value){
         this.value = value;
     }
 
     @Override
     public void setView(View view) {
-        view.setX(value);
+        view.setScaleX(value);
     }
 
     @Override
     public void animateView(View view) {
-        view.animate().x(value);
+        view.animate().scaleX(value);
     }
 }

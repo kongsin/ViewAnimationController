@@ -1,4 +1,4 @@
-package com.example.kognsin.animate;
+package com.example.kanimationcontroller;
 
 import android.animation.Animator;
 import android.view.View;

@@ -1,6 +1,5 @@
-package com.example.kognsin.animate;
+package com.example.kanimationcontroller;
 
-import android.util.Log;
 import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
