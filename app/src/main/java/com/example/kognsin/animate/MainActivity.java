@@ -66,10 +66,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 bottomAnim.y(0).startDelay(50);
 
                 BaseAnimationControl imgAnim = new ImageAnimationControl(img);
-                imgAnim.scaleX(1.6F).scaleY(1.6F).stackToBottomOf(bottomAnim).startDelay(50);
+                imgAnim.scaleX(1.6F).scaleY(1.6F).stackToBottomOf(bottomAnim).startDelay(100);
 
                 BaseAnimationControl topAnim = new BaseAnimationControl(top);
-                topAnim.stackToBottomOf(imgAnim).startDelay(50);
+                topAnim.stackToBottomOf(imgAnim).startDelay(150);
             }
         }, 2000);
 
@@ -81,10 +81,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 bottomAnim.y(450).startDelay(50);
 
                 BaseAnimationControl imgAnim = new ImageAnimationControl(img);
-                imgAnim.scaleX(1.6F).scaleY(1.6F).stackToBottomOf(bottomAnim).startDelay(50);
+                imgAnim.scaleX(1.6F).scaleY(1.6F).stackToBottomOf(bottomAnim).startDelay(100);
 
                 BaseAnimationControl topAnim = new BaseAnimationControl(top);
-                topAnim.stackToBottomOf(imgAnim).startDelay(50);
+                topAnim.stackToBottomOf(imgAnim).startDelay(150);
             }
         }, 3000);
 
@@ -96,10 +96,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 imgAnim.scaleX(1.6F).scaleY(1.6F).y(0).startDelay(50);
 
                 BaseAnimationControl topAnim = new BaseAnimationControl(top);
-                topAnim.stackToBottomOf(imgAnim).startDelay(50);
+                topAnim.stackToBottomOf(imgAnim).startDelay(100);
 
                 BaseAnimationControl bottomAnim = new BaseAnimationControl(bottpm);
-                bottomAnim.stackToBottomOf(topAnim).startDelay(50);
+                bottomAnim.stackToBottomOf(topAnim).startDelay(150);
 
             }
         }, 4000);
