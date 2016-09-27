@@ -16,6 +16,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView top, bottpm, action;
     ImageView img;
     private static final String TAG = "MainActivity";
+    private BaseAnimationControl actionAnim;
+    private BaseAnimationControl bottomAnim;
+    private BaseAnimationControl imgAnim;
+    private BaseAnimationControl topAnim;
 
     public void init(){
         setContentView(R.layout.activity_main);
@@ -28,32 +32,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         img.setOnClickListener(this);
     }
 
+    public void newInstance(){
+        actionAnim = new BaseAnimationControl(action);
+        bottomAnim = new BaseAnimationControl(bottpm);
+        imgAnim = new ImageAnimationControl(img);
+        topAnim = new BaseAnimationControl(top);
+    }
+
     @Override
     public void onClick(final View v) {
-
-        BaseAnimationControl actionAnim = new BaseAnimationControl(action);
+        newInstance();
         actionAnim.y(-action.getHeight()).gone().start();
-
-        BaseAnimationControl bottomAnim = new BaseAnimationControl(bottpm);
         bottomAnim.y((main.getHeight()/2) - img.getHeight() / 2).startDelay(50);
-
-        BaseAnimationControl imgAnim = new ImageAnimationControl(img);
         imgAnim.scaleX(0.6F).scaleY(0.6F).stackToBottomOf(bottomAnim).startDelay(50);
-
-        BaseAnimationControl topAnim = new BaseAnimationControl(top);
         topAnim.stackToBottomOf(imgAnim).startDelay(50);
 
         new Handler(getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
                 //init();
-                BaseAnimationControl bottomAnim = new BaseAnimationControl(bottpm);
+                newInstance();
                 bottomAnim.y((main.getHeight()/2) - img.getHeight() / 2).startDelay(50);
-
-                BaseAnimationControl imgAnim = new ImageAnimationControl(img);
                 imgAnim.scaleX(1.6F).scaleY(1.6F).stackToBottomOf(bottomAnim).startDelay(50);
-
-                BaseAnimationControl topAnim = new BaseAnimationControl(top);
                 topAnim.stackToBottomOf(imgAnim).startDelay(50);
             }
         }, 1000);
@@ -62,13 +62,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void run() {
                 //init();
-                BaseAnimationControl bottomAnim = new BaseAnimationControl(bottpm);
+                newInstance();
                 bottomAnim.y(0).startDelay(50);
-
-                BaseAnimationControl imgAnim = new ImageAnimationControl(img);
                 imgAnim.scaleX(1.6F).scaleY(1.6F).stackToBottomOf(bottomAnim).startDelay(100);
-
-                BaseAnimationControl topAnim = new BaseAnimationControl(top);
                 topAnim.stackToBottomOf(imgAnim).startDelay(150);
             }
         }, 2000);
@@ -77,13 +73,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void run() {
                 //init();
-                BaseAnimationControl bottomAnim = new BaseAnimationControl(bottpm);
+                newInstance();
                 bottomAnim.y(450).startDelay(50);
-
-                BaseAnimationControl imgAnim = new ImageAnimationControl(img);
                 imgAnim.scaleX(1.6F).scaleY(1.6F).stackToBottomOf(bottomAnim).startDelay(100);
-
-                BaseAnimationControl topAnim = new BaseAnimationControl(top);
                 topAnim.stackToBottomOf(imgAnim).startDelay(150);
             }
         }, 3000);
@@ -92,13 +84,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void run() {
                 //init();
-                BaseAnimationControl imgAnim = new ImageAnimationControl(img);
+                newInstance();
                 imgAnim.scaleX(1.6F).scaleY(1.6F).y(0).startDelay(50);
-
-                BaseAnimationControl topAnim = new BaseAnimationControl(top);
                 topAnim.stackToBottomOf(imgAnim).startDelay(100);
-
-                BaseAnimationControl bottomAnim = new BaseAnimationControl(bottpm);
                 bottomAnim.stackToBottomOf(topAnim).startDelay(150);
 
             }
