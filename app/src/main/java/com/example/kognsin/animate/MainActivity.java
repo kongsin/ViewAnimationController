@@ -43,9 +43,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         new Handler(getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-                init();
+                //init();
+                BaseAnimationControl bottomAnim = new BaseAnimationControl(bottpm);
+                bottomAnim.y((main.getHeight()/2) - img.getHeight() / 2).startDelay(150);
+
+                BaseAnimationControl imgAnim = new ImageAnimationControl(img);
+                imgAnim.scaleX(1.6F).scaleY(1.6F).stackToBottomOf(bottomAnim).startDelay(100);
+
+                BaseAnimationControl topAnim = new BaseAnimationControl(top);
+                topAnim.stackToBottomOf(imgAnim).startDelay(50);
             }
         }, 2000);
+
+        new Handler(getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //init();
+                BaseAnimationControl bottomAnim = new BaseAnimationControl(bottpm);
+                bottomAnim.y(0).startDelay(50);
+
+                BaseAnimationControl imgAnim = new ImageAnimationControl(img);
+                imgAnim.scaleX(1.6F).scaleY(1.6F).stackToBottomOf(bottomAnim).startDelay(100);
+
+                BaseAnimationControl topAnim = new BaseAnimationControl(top);
+                topAnim.stackToBottomOf(imgAnim).startDelay(150);
+            }
+        }, 3000);
+
     }
 
     @Override
