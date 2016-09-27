@@ -8,31 +8,63 @@ import android.graphics.Rect;
 
 public class Pos {
 
-    private float x, y;
-
-    public Pos(int[] pos) {
-        setX(pos[0]);
-        setY(pos[1]);
-    }
+    private float l, t, r, b;
+    private float w, h;
 
     public Pos(Rect rect) {
-        setX(rect.left);
-        setY(rect.bottom);
+        setL(rect.left);
+        setB(rect.bottom);
+        setR(rect.right);
+        setT(rect.top);
+        setW(rect.width());
+        setH(rect.height());
     }
 
-    public float getX() {
-        return x;
+    public float getB() {
+        return b;
     }
 
-    public float getY() {
-        return y;
+    public void setB(float b) {
+        this.b = b;
     }
 
-    public void setX(float x) {
-        this.x = x;
+    public float getL() {
+        return l;
     }
 
-    public void setY(float y) {
-        this.y = y;
+    public void setL(float l) {
+        this.l = l;
+    }
+
+    public float getR() {
+        return r;
+    }
+
+    public void setR(float r) {
+        this.r = r;
+    }
+
+    public float getT() {
+        return t;
+    }
+
+    public void setT(float t) {
+        this.t = t;
+    }
+
+    public void setH(float h) {
+        this.h = h;
+    }
+
+    public void setW(float w) {
+        this.w = w;
+    }
+
+    public float getH() {
+        return h;
+    }
+
+    public float getW() {
+        return w;
     }
 }

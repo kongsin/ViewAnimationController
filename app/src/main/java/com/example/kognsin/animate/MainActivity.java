@@ -27,10 +27,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(final View v) {
-        AnimationControl.with(action).y(-action.getHeight()).start().gone();
-        AnimationControl.with(top).y(0).startDelayed(50);
-        AnimationControl.with(img).scaleX(0.4F).scaleY(0.4F).stackToBottom(top).startDelayed(200);
-        AnimationControl.with(bottpm).stackToBottom(img).destinationWasResized(img.getHeight(), 0.4F).startDelayed(300);
+
+        BaseAnimationControl actionAnim = new BaseAnimationControl(action);
+        actionAnim.y(-action.getHeight()).gone().start();
+
+        BaseAnimationControl bottomAnim = new BaseAnimationControl(bottpm);
+        bottomAnim.y((main.getHeight()/2) - img.getHeight() / 2).startDelay(150);
+
+        BaseAnimationControl imgAnim = new ImageAnimationControl(img);
+        imgAnim.scaleX(0.6F).scaleY(0.6F).stackToBottomOf(bottomAnim).startDelay(100);
+
+        BaseAnimationControl topAnim = new BaseAnimationControl(top);
+        topAnim.stackToBottomOf(imgAnim).startDelay(50);
+
         new Handler(getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -45,11 +54,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         init();
     }
 
-    /*        AnimationControl.with(action).y(-action.getHeight()).start().gone();
-        AnimationControl.with(top).y(0).startDelayed(50);
-        AnimationControl.with(img).y(top.getHeight() - ((img.getHeight() - (img.getHeight() * 0.4F)) / 2)).startDelayed(50);
-        AnimationControl.with(img).X(0.4F).Y(0.4F).startDelayed(200);
-        AnimationControl.with(bottpm).y(top.getHeight() + (img.getHeight() * 0.4F)).startDelayed(300);*/
+    /*        BaseAnimationControl.with(action).y(-action.getHeight()).start().gone();
+        BaseAnimationControl.with(top).y(0).startDelayed(50);
+        BaseAnimationControl.with(img).y(top.getHeight() - ((img.getHeight() - (img.getHeight() * 0.4F)) / 2)).startDelayed(50);
+        BaseAnimationControl.with(img).X(0.4F).Y(0.4F).startDelayed(200);
+        BaseAnimationControl.with(bottpm).y(top.getHeight() + (img.getHeight() * 0.4F)).startDelayed(300);*/
 
 }
 
