@@ -1,6 +1,8 @@
 package com.example.kanimationcontroller;
 
 import android.view.View;
+import android.view.ViewPropertyAnimator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +49,13 @@ public class BaseAnimationControl {
     }
 
     public BaseAnimationControl newAnimate(){
+        mView.animate().setDuration(250);
         animateSets.clear();
+        return this;
+    }
+
+    public BaseAnimationControl setDuration(int duration){
+        mView.animate().setDuration(duration);
         return this;
     }
 
