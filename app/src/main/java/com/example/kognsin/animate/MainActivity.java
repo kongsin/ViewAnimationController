@@ -51,10 +51,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void run() {
                 //init();
-                newInstance();
-                bottomAnim.y((main.getHeight()/2) - img.getHeight() / 2).startDelay(50);
-                imgAnim.scaleX(1.6F).scaleY(1.6F).stackToBottomOf(bottomAnim).startDelay(50);
-                topAnim.stackToBottomOf(imgAnim).startDelay(50);
+                bottomAnim.newAnimate().y((main.getHeight()/2) - img.getHeight() / 2).startDelay(50);
+                imgAnim.newAnimate().scaleX(1.6F).scaleY(1.6F).stackToBottomOf(bottomAnim).startDelay(50);
+                topAnim.newAnimate().stackToBottomOf(imgAnim).startDelay(50);
             }
         }, 1000);
 
@@ -62,10 +61,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void run() {
                 //init();
-                newInstance();
-                bottomAnim.y(0).startDelay(50);
-                imgAnim.scaleX(1.6F).scaleY(1.6F).stackToBottomOf(bottomAnim).startDelay(100);
-                topAnim.stackToBottomOf(imgAnim).startDelay(150);
+                bottomAnim.newAnimate().y(0).startDelay(50);
+                imgAnim.newAnimate().scaleX(1.6F).scaleY(1.6F).stackToBottomOf(bottomAnim).startDelay(100);
+                topAnim.newAnimate().stackToBottomOf(imgAnim).startDelay(150);
             }
         }, 2000);
 
@@ -73,10 +71,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void run() {
                 //init();
-                newInstance();
-                bottomAnim.y(450).startDelay(50);
-                imgAnim.scaleX(1.6F).scaleY(1.6F).stackToBottomOf(bottomAnim).startDelay(100);
-                topAnim.stackToBottomOf(imgAnim).startDelay(150);
+                bottomAnim.newAnimate().y(450).startDelay(50);
+                imgAnim.newAnimate().scaleX(1.6F).scaleY(1.6F).stackToBottomOf(bottomAnim).startDelay(100);
+                topAnim.newAnimate().stackToBottomOf(imgAnim).startDelay(150);
             }
         }, 3000);
 
@@ -84,10 +81,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void run() {
                 //init();
-                newInstance();
-                imgAnim.scaleX(1.6F).scaleY(1.6F).y(0).startDelay(50);
-                topAnim.stackToBottomOf(imgAnim).startDelay(100);
-                bottomAnim.stackToBottomOf(topAnim).startDelay(150);
+                imgAnim.newAnimate().scaleX(1.6F).scaleY(1.6F).y(0).startDelay(50);
+                topAnim.newAnimate().stackToBottomOf(imgAnim).startDelay(100);
+                bottomAnim.newAnimate().stackToBottomOf(topAnim).startDelay(150);
 
             }
         }, 4000);

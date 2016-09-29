@@ -46,6 +46,11 @@ public class BaseAnimationControl {
         return getHeight();
     }
 
+    public BaseAnimationControl newAnimate(){
+        animateSets.clear();
+        return this;
+    }
+
     protected float getScaledWidth(){
         for (IAnimateSet animateSet : animateSets) {
             if (animateSet instanceof ScaleX){
