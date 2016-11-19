@@ -7,15 +7,6 @@
     tools:context="com.example.kognsin.animate.MainActivity"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/action"
-        android:textColor="#FFFFFF"
-        android:background="@color/colorPrimaryDark"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Title bar"/>
-
     <LinearLayout
         android:id="@+id/root"
         android:layout_width="match_parent"
@@ -23,31 +14,29 @@
         android:orientation="vertical"
         android:gravity="center">
 
-        <TextView
-            android:id="@+id/top"
-            android:textColor="#FFFFFF"
-            android:background="@color/colorPrimaryDark"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Header"/>
-
         <ImageView
             android:id="@+id/img"
             android:background="@color/colorPrimary"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="50dp"
             android:adjustViewBounds="true"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@mipmap/ic_launcher"
+            android:layout_height="50dp" />
 
-        <TextView
-            android:id="@+id/bottom"
-            android:textColor="#FFFFFF"
-            android:background="@color/colorPrimaryDark"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Footer"/>
+        <Button
+            android:text="1"
+            android:layout_width="50dp"
+            android:id="@+id/button"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/background_light" />
+
+        <Button
+            android:text="2"
+            android:layout_width="50dp"
+            android:id="@+id/button1"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/background_light" />
     </LinearLayout>
 
 </LinearLayout>
