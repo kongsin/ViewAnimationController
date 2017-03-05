@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void flip(final ImageView view){
-        AnimationQueue animationQueue = new AnimationQueue(0, new ImageAnimationControl(view).goToTop(main).start());
+        AnimationQueue animationQueue = new AnimationQueue(0, new ImageAnimationControl(view).scaleX(1.2f).scaleY(1.2f).goToBottom(main).start());
         animationQueue.nextQueue(0, new ImageAnimationControl(view).flip(-180).setDuration(200));
         animationQueue.setCallback(new AnimationQueue.AnimatedCallback() {
             @Override

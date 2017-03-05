@@ -160,13 +160,15 @@ public class BaseAnimationControl {
     }
 
     public BaseAnimationControl goToTop(ViewGroup rootView){
-        animateSets.add(new Y(rootView.getTop()));
+        float top = rootView.getTop();
+        float scale = (getScaledHeight() - getHeight());
+        animateSets.add(new Y(top + (scale / 2)));
         return this;
     }
 
     public BaseAnimationControl goToBottom(ViewGroup rootView){
         float screenHeight = rootView.getBottom();
-        float destVal = screenHeight - getScaledHeight();
+        float destVal = screenHeight - (getHeight() + ((getScaledHeight() - getHeight()) / 2));
         animateSets.add(new Y(destVal));
         return this;
     }
@@ -271,6 +273,24 @@ public class BaseAnimationControl {
 
     public BaseAnimationControl x(float value){
         animateSets.add(new X(value - ((getWidth() - getScaledWidth())/2)));
+        return this;
+    }
+
+    public BaseAnimationControl marginX(float value){
+        for (IAnimateSet animateSet : animateSets) {
+            if (animateSet instanceof X){
+                animateSet.setValue(animateSet.getValue()+value);
+            }
+        }
+        return this;
+    }
+
+    public BaseAnimationControl marginY(float value){
+        for (IAnimateSet animateSet : animateSets) {
+            if (animateSet instanceof Y){
+                animateSet.setValue(animateSet.getValue()+value);
+            }
+        }
         return this;
     }
 
