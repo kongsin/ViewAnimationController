@@ -25,8 +25,8 @@ public class ScaleY implements IAnimateSet{
     }
 
     @Override
-    public void animateView(View view, Animator.AnimatorListener listener) {
-        view.animate().scaleY(value).setListener(listener);
+    public void animateView(View view) {
+        view.animate().scaleY(value);
     }
 
     @Override

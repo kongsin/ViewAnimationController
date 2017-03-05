@@ -10,7 +10,7 @@ import android.view.animation.Animation;
 
 public interface IAnimateSet {
     void setView(View view);
-    void animateView(View view, Animator.AnimatorListener listener);
+    void animateView(View view);
     float getValue();
     void setValue(float...value);
 }

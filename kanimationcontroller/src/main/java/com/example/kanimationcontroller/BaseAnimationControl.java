@@ -16,19 +16,11 @@ public class BaseAnimationControl {
 
     protected View mView;
     private static final String TAG = "BaseAnimationControl";
-    protected List<HashMap<String, Float>> positionHistory = new ArrayList<>();
     protected List<IAnimateSet> animateSets = new ArrayList<>();
     private Animator.AnimatorListener mAnimatorListener;
 
     public BaseAnimationControl(View view) {
         this.mView = view;
-    }
-
-    private void addPositionHistory(float x, float y) {
-        HashMap<String, Float> map = new HashMap<>();
-        map.put("X", x);
-        map.put("Y", y);
-        positionHistory.add(map);
     }
 
     public List<IAnimateSet> getAnimateSets() {
@@ -62,7 +54,6 @@ public class BaseAnimationControl {
     public BaseAnimationControl newAnimate(){
         mView.animate().setDuration(250);
         animateSets.clear();
-        positionHistory.clear();
         return this;
     }
 
@@ -110,25 +101,24 @@ public class BaseAnimationControl {
         return mView.getY();
     }
 
-    public void setAnimationListener(Animator.AnimatorListener listener){
+    public BaseAnimationControl setAnimationListener(Animator.AnimatorListener listener){
         mAnimatorListener = listener;
+        return this;
     }
 
     public BaseAnimationControl start(){
-        addPositionHistory(getX(), getY());
         for (IAnimateSet animateSet : animateSets) {
-            animateSet.animateView(mView, mAnimatorListener);
+            animateSet.animateView(mView);
         }
-        mView.animate().start();
+        mView.animate().setListener(mAnimatorListener).start();
         return this;
     }
 
     public BaseAnimationControl startDelay(int milliseconds){
-        addPositionHistory(getX(), getY());
         for (IAnimateSet animateSet : animateSets) {
-            animateSet.animateView(mView, mAnimatorListener);
+            animateSet.animateView(mView);
         }
-        mView.animate().setStartDelay(milliseconds).start();
+        mView.animate().setStartDelay(milliseconds).setListener(mAnimatorListener).start();
         return this;
     }
 
@@ -170,6 +160,13 @@ public class BaseAnimationControl {
         float screenW = rootView.getWidth();
         float destVal = (screenW / 2) - (getScaledWidth() / 2);
         animateSets.add(new X(destVal));
+        return this;
+    }
+
+    public BaseAnimationControl moveToCenterVertical(ViewGroup rootView){
+        float screenH = rootView.getHeight();
+        float destVal = (screenH / 2) - (getScaledHeight() / 2);
+        animateSets.add(new Y(destVal));
         return this;
     }
 

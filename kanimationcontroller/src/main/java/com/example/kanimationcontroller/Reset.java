@@ -38,11 +38,10 @@ public class Reset implements IAnimateSet {
     }
 
     @Override
-    public void animateView(final View view, final Animator.AnimatorListener listener) {
+    public void animateView(final View view) {
         view.animate().setListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
-                if (listener != null) listener.onAnimationStart(animation);
             }
 
             @Override
@@ -51,17 +50,14 @@ public class Reset implements IAnimateSet {
                 view.setY(0);
                 view.setScaleY(1.0F);
                 view.setScaleX(1.0F);
-                if (listener != null) listener.onAnimationEnd(animation);
             }
 
             @Override
             public void onAnimationCancel(Animator animation) {
-                if (listener != null) listener.onAnimationCancel(animation);
             }
 
             @Override
             public void onAnimationRepeat(Animator animation) {
-                if (listener != null) listener.onAnimationRepeat(animation);
             }
         });
     }

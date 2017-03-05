@@ -25,8 +25,8 @@ public class TransX implements IAnimateSet{
     }
 
     @Override
-    public void animateView(View view, Animator.AnimatorListener listener) {
-        view.animate().translationX(value).setListener(listener);
+    public void animateView(View view) {
+        view.animate().translationX(value);
     }
 
     @Override

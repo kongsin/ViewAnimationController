@@ -25,8 +25,8 @@ public class X implements IAnimateSet{
     }
 
     @Override
-    public void animateView(View view, Animator.AnimatorListener listener) {
-        view.animate().x(value).setListener(listener);
+    public void animateView(View view) {
+        view.animate().x(value);
     }
 
     @Override
