@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -18,9 +17,6 @@ public class BaseAnimationControl {
     protected View mView;
     private static final String TAG = "BaseAnimationControl";
     protected List<IAnimateSet> animateSets = new ArrayList<>();
-    private Animator.AnimatorListener mAnimatorListener;
-    private AnimatedCallback mAnimateCallbacl;
-    private AnimationQueue mAnimationQueue;
 
     public BaseAnimationControl(View view) {
         this.mView = view;
@@ -143,6 +139,11 @@ public class BaseAnimationControl {
 
     public BaseAnimationControl reset(){
         animateSets.add(new Reset());
+        return this;
+    }
+
+    public BaseAnimationControl flip(int decree){
+        animateSets.add(new RotationY(decree));
         return this;
     }
 
@@ -291,10 +292,6 @@ public class BaseAnimationControl {
     public BaseAnimationControl translationY(float value){
         animateSets.add(new TransY(value));
         return this;
-    }
-
-    public interface AnimatedCallback {
-        void finished();
     }
 
 }

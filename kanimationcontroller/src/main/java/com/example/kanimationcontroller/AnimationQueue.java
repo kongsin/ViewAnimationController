@@ -3,11 +3,11 @@ package com.example.kanimationcontroller;
 import android.animation.Animator;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by kongsin on 3/5/2017.
@@ -17,7 +17,7 @@ public class AnimationQueue implements Animator.AnimatorListener {
 
     private List<HashMap<String, Object>> animationControls = new ArrayList<>();
     private int currentQueue = 0;
-    private BaseAnimationControl.AnimatedCallback mAnimateCallbacl;
+    private AnimatedCallback mAnimateCallbacl;
     private static final String TAG = "AnimationQueue";
 
     public AnimationQueue(int startDaelayTime, BaseAnimationControl animationControl){
@@ -62,13 +62,17 @@ public class AnimationQueue implements Animator.AnimatorListener {
 
     @Override
     public void onAnimationEnd(Animator animation) {
+        if (mAnimateCallbacl != null) {
+            mAnimateCallbacl.eachQueueFinishe((BaseAnimationControl) animationControls.get(currentQueue).get("animObj"));
+        }
         currentQueue++;
         if (currentQueue < animationControls.size()){
             start();
         } else {
             Log.i(TAG, "onAnimationEnd: ");
-            if (mAnimateCallbacl != null)
+            if (mAnimateCallbacl != null) {
                 mAnimateCallbacl.finished();
+            }
         }
     }
 
@@ -82,7 +86,13 @@ public class AnimationQueue implements Animator.AnimatorListener {
 
     }
 
-    public void setCallback(BaseAnimationControl.AnimatedCallback animateCallbacl) {
+    public void setCallback(AnimatedCallback animateCallbacl) {
         this.mAnimateCallbacl = animateCallbacl;
     }
+
+    public interface AnimatedCallback {
+        void finished();
+        void eachQueueFinishe(BaseAnimationControl control);
+    }
+
 }
