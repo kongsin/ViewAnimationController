@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.example.kanimationcontroller.AnimationQueue;
 import com.example.kanimationcontroller.BaseAnimationControl;
@@ -15,7 +17,7 @@ import com.example.kanimationcontroller.ImageAnimationControl;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, AnimationQueue.AnimatedCallback {
-    LinearLayout main;
+    RelativeLayout main;
     ImageView img, img2, img3, play;
 
     private static final String TAG = "MainActivity";
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void init(){
         setContentView(R.layout.activity_main);
-        main = (LinearLayout) findViewById(R.id.main);
+        main = (RelativeLayout) findViewById(R.id.main);
         play = (ImageView) findViewById(R.id.paly);
         img = (ImageView) findViewById(R.id.card1);
         img2 = (ImageView) findViewById(R.id.card2);
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         img3.setOnClickListener(this);
         play.setOnClickListener(this);
         mRan = new Random();
+        firstSetupView();
     }
 
     @Override
@@ -78,7 +81,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    public void firstSetupView(){
+        main.post(new Runnable() {
+            @Override
+            public void run() {
+                AnimationQueue animationQueue = new AnimationQueue(0, new ImageAnimationControl(img).goToLeft(main).moveToCenterVertical(main).marginLeft(50));
+                animationQueue.nextQueue(0, new ImageAnimationControl(img2).moveToCenterVertical(main).moveToCenterHorizontal(main));
+                animationQueue.nextQueue(0, new ImageAnimationControl(img3).goToRight(main).moveToCenterVertical(main).marginRight(50));
+                animationQueue.start();
+            }
+        });
+    }
+
     public void flip(final ImageView view){
+        view.bringToFront();
         AnimationQueue animationQueue = new AnimationQueue(0, new ImageAnimationControl(view).scaleX(1.2f).scaleY(1.2f).goToTop(main).moveToCenterHorizontal(main));
         animationQueue.nextQueue(0, new ImageAnimationControl(view).flip(-180).setDuration(200));
         animationQueue.setCallback(new AnimationQueue.AnimatedCallback() {
