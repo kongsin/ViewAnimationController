@@ -175,14 +175,14 @@ public class BaseAnimationControl {
 
     public BaseAnimationControl moveToCenterHorizontal(ViewGroup rootView){
         float screenW = rootView.getWidth();
-        float destVal = (screenW / 2) - (getScaledWidth() / 2);
+        float destVal = (screenW / 2) - (getWidth() / 2);
         animateSets.add(new X(destVal));
         return this;
     }
 
     public BaseAnimationControl moveToCenterVertical(ViewGroup rootView){
         float screenH = rootView.getHeight();
-        float destVal = (screenH / 2) - (getScaledHeight() / 2);
+        float destVal = (screenH / 2) - (getHeight() / 2);
         animateSets.add(new Y(destVal));
         return this;
     }
@@ -276,19 +276,37 @@ public class BaseAnimationControl {
         return this;
     }
 
-    public BaseAnimationControl marginX(float value){
+    public BaseAnimationControl marginLeft(float value){
         for (IAnimateSet animateSet : animateSets) {
             if (animateSet instanceof X){
-                animateSet.setValue(animateSet.getValue()+value);
+                animateSet.setValue(animateSet.getValue() + value);
             }
         }
         return this;
     }
 
-    public BaseAnimationControl marginY(float value){
+    public BaseAnimationControl marginRight(float value){
+        for (IAnimateSet animateSet : animateSets) {
+            if (animateSet instanceof X){
+                animateSet.setValue(animateSet.getValue() - value);
+            }
+        }
+        return this;
+    }
+
+    public BaseAnimationControl marginTop(float value){
         for (IAnimateSet animateSet : animateSets) {
             if (animateSet instanceof Y){
-                animateSet.setValue(animateSet.getValue()+value);
+                animateSet.setValue(animateSet.getValue() + value);
+            }
+        }
+        return this;
+    }
+
+    public BaseAnimationControl marginBottom(float value){
+        for (IAnimateSet animateSet : animateSets) {
+            if (animateSet instanceof Y){
+                animateSet.setValue(animateSet.getValue() - value);
             }
         }
         return this;

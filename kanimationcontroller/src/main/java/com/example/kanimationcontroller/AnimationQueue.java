@@ -3,7 +3,6 @@ package com.example.kanimationcontroller;
 import android.animation.Animator;
 import android.os.Handler;
 import android.util.Log;
-import android.view.View;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,7 +62,7 @@ public class AnimationQueue implements Animator.AnimatorListener {
     @Override
     public void onAnimationEnd(Animator animation) {
         if (mAnimateCallbacl != null) {
-            mAnimateCallbacl.eachQueueFinishe((BaseAnimationControl) animationControls.get(currentQueue).get("animObj"));
+            mAnimateCallbacl.eachQueueFinished((BaseAnimationControl) animationControls.get(currentQueue).get("animObj"));
         }
         currentQueue++;
         if (currentQueue < animationControls.size()){
@@ -92,7 +91,7 @@ public class AnimationQueue implements Animator.AnimatorListener {
 
     public interface AnimatedCallback {
         void finished();
-        void eachQueueFinishe(BaseAnimationControl control);
+        void eachQueueFinished(BaseAnimationControl control);
     }
 
 }

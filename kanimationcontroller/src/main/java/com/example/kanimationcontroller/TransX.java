@@ -31,6 +31,6 @@ public class TransX implements IAnimateSet{
 
     @Override
     public void setValue(float... value) {
-
+        this.value = value[0];
     }
 }

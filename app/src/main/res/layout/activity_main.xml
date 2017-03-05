@@ -19,7 +19,8 @@
             android:layout_height="150dp"
             android:background="@drawable/card_bg"
             android:src="@drawable/card_img"
-            android:layout_marginLeft="4dp"/>
+            android:layout_marginLeft="4dp"
+            android:scaleType="fitXY"/>
 
         <ImageView
             android:id="@+id/card2"
@@ -27,7 +28,8 @@
             android:layout_height="150dp"
             android:background="@drawable/card_bg"
             android:src="@drawable/card_img"
-            android:layout_marginLeft="4dp"/>
+            android:layout_marginLeft="4dp"
+            android:scaleType="fitXY"/>
 
         <ImageView
             android:id="@+id/card3"
@@ -35,7 +37,8 @@
             android:layout_height="150dp"
             android:background="@drawable/card_bg"
             android:src="@drawable/card_img"
-            android:layout_marginLeft="4dp"/>
+            android:layout_marginLeft="4dp"
+            android:scaleType="fitXY"/>
 
     </LinearLayout>
 
