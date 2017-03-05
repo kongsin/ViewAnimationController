@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ViewAnimatorController.iml" filepath="$PROJECT_DIR$/ViewAnimatorController.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ViewAnimatorController.iml" filepath="$PROJECT_DIR$/ViewAnimatorController.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kanimationcontroller/kanimationcontroller.iml" filepath="$PROJECT_DIR$/kanimationcontroller/kanimationcontroller.iml" />
       <module fileurl="file://$PROJECT_DIR$/kanimationcontroller/kanimationcontroller.iml" filepath="$PROJECT_DIR$/kanimationcontroller/kanimationcontroller.iml" />
     </modules>
   </component>

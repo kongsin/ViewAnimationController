@@ -1,5 +1,6 @@
 package com.example.kanimationcontroller;
 
+import android.animation.Animator;
 import android.view.View;
 
 /**
@@ -9,6 +10,7 @@ import android.view.View;
 public class ScaleY implements IAnimateSet{
     private float value;
 
+    @Override
     public float getValue() {
         return value;
     }
@@ -17,14 +19,18 @@ public class ScaleY implements IAnimateSet{
         this.value = value;
     }
 
-
     @Override
     public void setView(View view) {
         view.setScaleY(value);
     }
 
     @Override
-    public void animateView(View view) {
-        view.animate().scaleY(value);
+    public void animateView(View view, Animator.AnimatorListener listener) {
+        view.animate().scaleY(value).setListener(listener);
+    }
+
+    @Override
+    public void setValue(float... value) {
+
     }
 }

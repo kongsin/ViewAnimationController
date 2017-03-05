@@ -1,5 +1,6 @@
 package com.example.kanimationcontroller;
 
+import android.animation.Animator;
 import android.view.View;
 
 /**
@@ -9,6 +10,7 @@ import android.view.View;
 public class X implements IAnimateSet{
     private float value;
 
+    @Override
     public float getValue() {
         return value;
     }
@@ -23,7 +25,12 @@ public class X implements IAnimateSet{
     }
 
     @Override
-    public void animateView(View view) {
-        view.animate().x(value);
+    public void animateView(View view, Animator.AnimatorListener listener) {
+        view.animate().x(value).setListener(listener);
+    }
+
+    @Override
+    public void setValue(float... value) {
+
     }
 }

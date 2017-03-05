@@ -1,5 +1,6 @@
 package com.example.kanimationcontroller;
 
+import android.animation.Animator;
 import android.view.View;
 
 /**
@@ -14,12 +15,22 @@ public class TransY implements IAnimateSet{
     }
 
     @Override
+    public float getValue() {
+        return value;
+    }
+
+    @Override
     public void setView(View view) {
         view.setTranslationY(value);
     }
 
     @Override
-    public void animateView(View view) {
-        view.animate().translationY(value);
+    public void animateView(View view, Animator.AnimatorListener listener) {
+        view.animate().translationY(value).setListener(listener);
+    }
+
+    @Override
+    public void setValue(float... value) {
+
     }
 }

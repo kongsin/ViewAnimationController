@@ -1,6 +1,8 @@
 package com.example.kanimationcontroller;
 
+import android.animation.Animator;
 import android.view.View;
+import android.view.animation.Animation;
 
 /**
  * Created by kognsin on 9/27/2016.
@@ -8,5 +10,7 @@ import android.view.View;
 
 public interface IAnimateSet {
     void setView(View view);
-    void animateView(View view);
+    void animateView(View view, Animator.AnimatorListener listener);
+    float getValue();
+    void setValue(float...value);
 }

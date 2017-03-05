@@ -5,38 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.kognsin.animate.MainActivity"
-    android:orientation="vertical">
+    android:orientation="horizontal"
+    android:gravity="center_horizontal|center_vertical">
 
-    <LinearLayout
-        android:id="@+id/root"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
+    <ImageView
+        android:id="@+id/card1"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:background="@color/colorAccent"
+        android:layout_marginLeft="4dp"/>
 
-        <ImageView
-            android:id="@+id/img"
-            android:background="@color/colorPrimary"
-            android:layout_width="50dp"
-            android:adjustViewBounds="true"
-            android:src="@mipmap/ic_launcher"
-            android:layout_height="50dp" />
+    <ImageView
+        android:id="@+id/card2"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:background="#1c13ca"
+        android:layout_marginLeft="4dp"/>
 
-        <Button
-            android:text="1"
-            android:layout_width="50dp"
-            android:id="@+id/button"
-            android:layout_height="50dp"
-            android:background="@color/colorPrimary"
-            android:textColor="@android:color/background_light" />
-
-        <Button
-            android:text="2"
-            android:layout_width="50dp"
-            android:id="@+id/button1"
-            android:layout_height="50dp"
-            android:background="@color/colorPrimary"
-            android:textColor="@android:color/background_light" />
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/card3"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:background="#49ed17"
+        android:layout_marginLeft="4dp"/>
 
 </LinearLayout>
