@@ -136,30 +136,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void randDom1(){
-        AnimationQueue animationQueue = new AnimationQueue(0, new ImageAnimationControl(img).goToTop(main).moveToCenterHorizontal(main).setDuration(50));
-        animationQueue.nextQueue(0,new ImageAnimationControl(img2).goToLeft(main).marginLeft(50).setDuration(50));
-        animationQueue.nextQueue(0,new ImageAnimationControl(img3).goToRight(main).marginRight(50).setDuration(50));
-        animationQueue.nextQueue(0, new ImageAnimationControl(img).moveToCenterVertical(main).setDuration(50));
+        AnimationQueue animationQueue = new AnimationQueue(0, new ImageAnimationControl(img).goToTop(main).moveToCenterHorizontal(main).setDuration(80));
+        animationQueue.nextQueue(80, new ImageAnimationControl(img).moveToCenterVertical(main).setDuration(80));
         animationQueue.setCallback(this);
         animationQueue.start();
+        new ImageAnimationControl(img2).goToLeft(main).marginLeft(80).setDuration(80).start();
+        new ImageAnimationControl(img3).goToRight(main).marginRight(80).setDuration(80).start();
     }
 
     private void randDom2(){
-        AnimationQueue animationQueue = new AnimationQueue(0, new ImageAnimationControl(img2).goToTop(main).moveToCenterHorizontal(main).setDuration(50));
-        animationQueue.nextQueue(0,new ImageAnimationControl(img3).goToLeft(main).marginLeft(50).setDuration(50));
-        animationQueue.nextQueue(0,new ImageAnimationControl(img).goToRight(main).marginRight(50).setDuration(50));
-        animationQueue.nextQueue(0, new ImageAnimationControl(img2).moveToCenterVertical(main).setDuration(50));
+        AnimationQueue animationQueue = new AnimationQueue(0, new ImageAnimationControl(img2).goToTop(main).moveToCenterHorizontal(main).setDuration(80));
+        animationQueue.nextQueue(80, new ImageAnimationControl(img2).moveToCenterVertical(main).setDuration(80));
         animationQueue.setCallback(this);
         animationQueue.start();
+        new ImageAnimationControl(img3).goToLeft(main).marginLeft(80).setDuration(80).start();
+        new ImageAnimationControl(img).goToRight(main).marginRight(80).setDuration(80).start();
     }
 
     private void randDom3(){
-        AnimationQueue animationQueue = new AnimationQueue(0, new ImageAnimationControl(img3).goToTop(main).moveToCenterHorizontal(main).setDuration(50));
-        animationQueue.nextQueue(0,new ImageAnimationControl(img).goToLeft(main).marginLeft(50).setDuration(50));
-        animationQueue.nextQueue(0,new ImageAnimationControl(img2).goToRight(main).marginRight(50).setDuration(50));
-        animationQueue.nextQueue(0, new ImageAnimationControl(img3).moveToCenterVertical(main).setDuration(50));
+        AnimationQueue animationQueue = new AnimationQueue(0, new ImageAnimationControl(img3).goToTop(main).moveToCenterHorizontal(main).setDuration(80));
+        animationQueue.nextQueue(80, new ImageAnimationControl(img3).moveToCenterVertical(main).setDuration(80));
         animationQueue.setCallback(this);
         animationQueue.start();
+        new ImageAnimationControl(img).goToLeft(main).marginLeft(80).setDuration(80).start();
+        new ImageAnimationControl(img2).goToRight(main).marginRight(80).setDuration(80).start();
     }
 
     @Override
