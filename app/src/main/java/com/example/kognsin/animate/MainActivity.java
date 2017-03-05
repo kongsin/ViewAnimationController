@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Random mRan;
     private int mCount = 0;
     private int mLastRes = 0;
+    private int maxCount = 10;
 
     public void init(){
         setContentView(R.layout.activity_main);
@@ -40,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(final View v) {
         if (v == play){
+            maxCount = getRandomMax();
+            Log.i(TAG, "onClick: " + maxCount);
             mCount = 0;
             restoreFlip();
         } else {
@@ -47,8 +50,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    private int getRandomMax() {
+        return mRan.nextInt(10 - 5) + 5;
+    }
+
     private void randomCard() {
-        if (mCount > 10) return;
+        if (mCount > maxCount) return;
         while (true) {
             int res = mRan.nextInt(3) + 1;
             if (res != mLastRes) {
@@ -79,6 +86,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void finished() {
                 if (view == img2) {
                     view.setImageResource(R.mipmap.ic_launcher);
+                } else {
+                    view.setImageBitmap(null);
                 }
             }
 
@@ -103,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void eachQueueFinishe(BaseAnimationControl control) {
                 if (control instanceof ImageAnimationControl) {
-                    ((ImageView) control.getView()).setImageBitmap(null);
+                    ((ImageView) control.getView()).setImageResource(R.drawable.card_img);
                 }
             }
         });
