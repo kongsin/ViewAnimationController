@@ -9,12 +9,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.example.kanimationcontroller.AnimationQueue;
 import com.example.kanimationcontroller.BaseAnimationControl;
 import com.example.kanimationcontroller.ImageAnimationControl;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, BaseAnimationControl.AnimatedCallback {
     LinearLayout main;
     ImageView img, img2, img3;
 
@@ -35,14 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         img.setOnClickListener(this);
         img2.setOnClickListener(this);
         img3.setOnClickListener(this);
-        newInstance();
         mRan = new Random();
-    }
-
-    public void newInstance(){
-        imgAnim1 = new ImageAnimationControl(img);
-        imgAnim2 = new ImageAnimationControl(img2);
-        imgAnim3 = new ImageAnimationControl(img3);
     }
 
     @Override
@@ -76,117 +72,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void randDom1(){
-        newInstance();
-        imgAnim1.newAnimate().goToTop(main).moveToCenterHorizontal(main).setDuration(80).start();
-        imgAnim2.newAnimate().goToLeft(main).setDuration(80).start();
-        imgAnim3.newAnimate().goToRight(main).setDuration(80).start();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                imgAnim1.newAnimate().setDuration(80).moveToCenterVertical(main).setDuration(80).setAnimationListener(new Animator.AnimatorListener() {
-                    @Override
-                    public void onAnimationStart(Animator animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                randomCard();
-                            }
-                        }, 120);
-                    }
-
-                    @Override
-                    public void onAnimationCancel(Animator animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animator animation) {
-
-                    }
-                }).start();
-            }
-        }, 120);
+        AnimationQueue animationQueue = new AnimationQueue(0, new ImageAnimationControl(img).goToTop(main).moveToCenterHorizontal(main).setDuration(50));
+        animationQueue.nextQueue(0,new ImageAnimationControl(img2).goToLeft(main).setDuration(50).start());
+        animationQueue.nextQueue(0,new ImageAnimationControl(img3).goToRight(main).setDuration(50).start());
+        animationQueue.nextQueue(0, new ImageAnimationControl(img).moveToCenterVertical(main).setDuration(50));
+        animationQueue.setCallback(this);
+        animationQueue.start();
     }
 
     private void randDom2(){
-        newInstance();
-        imgAnim2.newAnimate().goToTop(main).moveToCenterHorizontal(main).setDuration(80).start();
-        imgAnim3.newAnimate().goToLeft(main).setDuration(80).start();
-        imgAnim1.newAnimate().goToRight(main).setDuration(80).start();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                imgAnim2.newAnimate().setDuration(80).moveToCenterVertical(main).setDuration(80).setAnimationListener(new Animator.AnimatorListener() {
-                    @Override
-                    public void onAnimationStart(Animator animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                randomCard();
-                            }
-                        }, 120);
-                    }
-
-                    @Override
-                    public void onAnimationCancel(Animator animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animator animation) {
-
-                    }
-                }).start();
-            }
-        }, 120);
+        AnimationQueue animationQueue = new AnimationQueue(0, new ImageAnimationControl(img2).goToTop(main).moveToCenterHorizontal(main).setDuration(50));
+        animationQueue.nextQueue(0,new ImageAnimationControl(img3).goToLeft(main).setDuration(50).start());
+        animationQueue.nextQueue(0,new ImageAnimationControl(img).goToRight(main).setDuration(50).start());
+        animationQueue.nextQueue(0, new ImageAnimationControl(img2).moveToCenterVertical(main).setDuration(50));
+        animationQueue.setCallback(this);
+        animationQueue.start();
     }
 
     private void randDom3(){
-        newInstance();
-        imgAnim3.newAnimate().goToTop(main).setDuration(80).moveToCenterHorizontal(main).start();
-        imgAnim1.newAnimate().goToLeft(main).setDuration(80).start();
-        imgAnim2.newAnimate().goToRight(main).setDuration(80).start();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                imgAnim3.newAnimate().setDuration(80).moveToCenterVertical(main).setDuration(80).setAnimationListener(new Animator.AnimatorListener() {
-                    @Override
-                    public void onAnimationStart(Animator animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                randomCard();
-                            }
-                        }, 120);
-                    }
-
-                    @Override
-                    public void onAnimationCancel(Animator animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animator animation) {
-
-                    }
-                }).start();
-            }
-        }, 120);
+        AnimationQueue animationQueue = new AnimationQueue(0, new ImageAnimationControl(img3).goToTop(main).moveToCenterHorizontal(main).setDuration(50));
+        animationQueue.nextQueue(0,new ImageAnimationControl(img).goToLeft(main).setDuration(50).start());
+        animationQueue.nextQueue(0,new ImageAnimationControl(img2).goToRight(main).setDuration(50).start());
+        animationQueue.nextQueue(0, new ImageAnimationControl(img3).moveToCenterVertical(main).setDuration(50));
+        animationQueue.setCallback(this);
+        animationQueue.start();
     }
 
     @Override
@@ -195,5 +104,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         init();
     }
 
+    @Override
+    public void finished() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                randomCard();
+            }
+        }, 120);
+    }
 }
 

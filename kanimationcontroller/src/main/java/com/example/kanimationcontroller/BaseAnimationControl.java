@@ -1,6 +1,7 @@
 package com.example.kanimationcontroller;
 
 import android.animation.Animator;
+import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -18,6 +19,8 @@ public class BaseAnimationControl {
     private static final String TAG = "BaseAnimationControl";
     protected List<IAnimateSet> animateSets = new ArrayList<>();
     private Animator.AnimatorListener mAnimatorListener;
+    private AnimatedCallback mAnimateCallbacl;
+    private AnimationQueue mAnimationQueue;
 
     public BaseAnimationControl(View view) {
         this.mView = view;
@@ -101,24 +104,35 @@ public class BaseAnimationControl {
         return mView.getY();
     }
 
-    public BaseAnimationControl setAnimationListener(Animator.AnimatorListener listener){
-        mAnimatorListener = listener;
-        return this;
-    }
-
     public BaseAnimationControl start(){
-        for (IAnimateSet animateSet : animateSets) {
-            animateSet.animateView(mView);
-        }
-        mView.animate().setListener(mAnimatorListener).start();
+        start(null);
         return this;
     }
 
-    public BaseAnimationControl startDelay(int milliseconds){
+    public BaseAnimationControl startDelay(int millisec){
+        startDelay(millisec, null);
+        return this;
+    }
+
+    public BaseAnimationControl start(Animator.AnimatorListener listener){
         for (IAnimateSet animateSet : animateSets) {
             animateSet.animateView(mView);
         }
-        mView.animate().setStartDelay(milliseconds).setListener(mAnimatorListener).start();
+        mView.animate().setListener(listener).start();
+        return this;
+    }
+
+    public View getView() {
+        return mView;
+    }
+
+    public BaseAnimationControl startDelay(int milliseconds, final Animator.AnimatorListener listener){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                start(listener);
+            }
+        }, milliseconds);
         return this;
     }
 
@@ -279,8 +293,8 @@ public class BaseAnimationControl {
         return this;
     }
 
-    public interface Then {
-        void animated(View view, Pos pos);
+    public interface AnimatedCallback {
+        void finished();
     }
 
 }
