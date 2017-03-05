@@ -140,8 +140,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         animationQueue.nextQueue(80, new ImageAnimationControl(img).moveToCenterVertical(main).setDuration(80));
         animationQueue.setCallback(this);
         animationQueue.start();
-        new ImageAnimationControl(img2).goToLeft(main).marginLeft(80).setDuration(80).start();
-        new ImageAnimationControl(img3).goToRight(main).marginRight(80).setDuration(80).start();
+        new ImageAnimationControl(img2).goToLeft(main).marginLeft(50).setDuration(80).start();
+        new ImageAnimationControl(img3).goToRight(main).marginRight(50).setDuration(80).start();
     }
 
     private void randDom2(){
@@ -149,8 +149,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         animationQueue.nextQueue(80, new ImageAnimationControl(img2).moveToCenterVertical(main).setDuration(80));
         animationQueue.setCallback(this);
         animationQueue.start();
-        new ImageAnimationControl(img3).goToLeft(main).marginLeft(80).setDuration(80).start();
-        new ImageAnimationControl(img).goToRight(main).marginRight(80).setDuration(80).start();
+        new ImageAnimationControl(img3).goToLeft(main).marginLeft(50).setDuration(80).start();
+        new ImageAnimationControl(img).goToRight(main).marginRight(50).setDuration(80).start();
     }
 
     private void randDom3(){
@@ -158,8 +158,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         animationQueue.nextQueue(80, new ImageAnimationControl(img3).moveToCenterVertical(main).setDuration(80));
         animationQueue.setCallback(this);
         animationQueue.start();
-        new ImageAnimationControl(img).goToLeft(main).marginLeft(80).setDuration(80).start();
-        new ImageAnimationControl(img2).goToRight(main).marginRight(80).setDuration(80).start();
+        new ImageAnimationControl(img).goToLeft(main).marginLeft(50).setDuration(80).start();
+        new ImageAnimationControl(img2).goToRight(main).marginRight(50).setDuration(80).start();
     }
 
     @Override
