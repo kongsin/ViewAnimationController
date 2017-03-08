@@ -5,9 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.example.kanimationcontroller.AnimationQueue;
@@ -43,43 +41,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(final View v) {
-        if (v == play){
-            maxCount = getRandomMax();
-            Log.i(TAG, "onClick: " + maxCount);
-            mCount = 0;
-            restoreFlip();
-        } else {
-            flip((ImageView) v);
-        }
+
     }
 
     private int getRandomMax() {
         return mRan.nextInt(10 - 5) + 5;
     }
 
-    private void randomCard() {
-        if (mCount > maxCount) return;
-        while (true) {
-            int res = mRan.nextInt(3) + 1;
-            if (res != mLastRes) {
-                mLastRes = res;
-                Log.i(TAG, "randomCard: " + res);
-                switch (res) {
-                    case 1:
-                        randDom1();
-                        break;
-                    case 2:
-                        randDom2();
-                        break;
-                    case 3:
-                        randDom3();
-                        break;
-                }
-                mCount ++;
-                break;
-            }
-        }
-    }
+
 
     public void firstSetupView(){
         main.post(new Runnable() {
@@ -88,78 +57,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 AnimationQueue animationQueue = new AnimationQueue(0, new ImageAnimationControl(img).goToLeft(main).moveToCenterVertical(main).marginLeft(50));
                 animationQueue.nextQueue(0, new ImageAnimationControl(img2).moveToCenterVertical(main).moveToCenterHorizontal(main));
                 animationQueue.nextQueue(0, new ImageAnimationControl(img3).goToRight(main).moveToCenterVertical(main).marginRight(50));
-                animationQueue.start();
+                animationQueue.setCallback(new AnimationQueue.AnimatedCallback() {
+                    @Override
+                    public void finished() {
+
+                    }
+
+                    @Override
+                    public void eachQueueFinished(BaseAnimationControl control) {
+                        Log.i(TAG, "eachQueueFinished: " + control.getView().getId());
+                    }
+                });
+                animationQueue.startTogether();
             }
         });
-    }
-
-    public void flip(final ImageView view){
-        view.bringToFront();
-        AnimationQueue animationQueue = new AnimationQueue(0, new ImageAnimationControl(view).scaleX(1.2f).scaleY(1.2f).goToTop(main).moveToCenterHorizontal(main));
-        animationQueue.nextQueue(0, new ImageAnimationControl(view).flip(-180).setDuration(200));
-        animationQueue.setCallback(new AnimationQueue.AnimatedCallback() {
-            @Override
-            public void finished() {
-                if (view == img2) {
-                    view.setImageResource(R.mipmap.ic_launcher);
-                } else {
-                    view.setImageBitmap(null);
-                }
-            }
-
-            @Override
-            public void eachQueueFinished(BaseAnimationControl control) {
-
-            }
-        });
-        animationQueue.start();
-    }
-
-    private void restoreFlip() {
-        AnimationQueue animationQueue = new AnimationQueue(0, new ImageAnimationControl(img).scaleX(1.0f).scaleY(1.0f).flip(0).setDuration(80));
-        animationQueue.nextQueue(0, new ImageAnimationControl(img2).scaleX(1.0f).scaleY(1.0f).flip(0).setDuration(80));
-        animationQueue.nextQueue(0, new ImageAnimationControl(img3).scaleX(1.0f).scaleY(1.0f).flip(0).setDuration(80));
-        animationQueue.setCallback(new AnimationQueue.AnimatedCallback() {
-            @Override
-            public void finished() {
-                randomCard();
-            }
-
-            @Override
-            public void eachQueueFinished(BaseAnimationControl control) {
-                if (control instanceof ImageAnimationControl) {
-                    ((ImageView) control.getView()).setImageResource(R.drawable.card_img);
-                }
-            }
-        });
-        animationQueue.start();
-    }
-
-    private void randDom1(){
-        AnimationQueue animationQueue = new AnimationQueue(0, new ImageAnimationControl(img).goToTop(main).moveToCenterHorizontal(main).setDuration(80));
-        animationQueue.nextQueue(80, new ImageAnimationControl(img).moveToCenterVertical(main).setDuration(80));
-        animationQueue.setCallback(this);
-        animationQueue.start();
-        new ImageAnimationControl(img2).goToLeft(main).marginLeft(50).setDuration(80).start();
-        new ImageAnimationControl(img3).goToRight(main).marginRight(50).setDuration(80).start();
-    }
-
-    private void randDom2(){
-        AnimationQueue animationQueue = new AnimationQueue(0, new ImageAnimationControl(img2).goToTop(main).moveToCenterHorizontal(main).setDuration(80));
-        animationQueue.nextQueue(80, new ImageAnimationControl(img2).moveToCenterVertical(main).setDuration(80));
-        animationQueue.setCallback(this);
-        animationQueue.start();
-        new ImageAnimationControl(img3).goToLeft(main).marginLeft(50).setDuration(80).start();
-        new ImageAnimationControl(img).goToRight(main).marginRight(50).setDuration(80).start();
-    }
-
-    private void randDom3(){
-        AnimationQueue animationQueue = new AnimationQueue(0, new ImageAnimationControl(img3).goToTop(main).moveToCenterHorizontal(main).setDuration(80));
-        animationQueue.nextQueue(80, new ImageAnimationControl(img3).moveToCenterVertical(main).setDuration(80));
-        animationQueue.setCallback(this);
-        animationQueue.start();
-        new ImageAnimationControl(img).goToLeft(main).marginLeft(50).setDuration(80).start();
-        new ImageAnimationControl(img2).goToRight(main).marginRight(50).setDuration(80).start();
     }
 
     @Override
@@ -173,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                randomCard();
+
             }
         }, 120);
     }

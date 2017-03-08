@@ -18,12 +18,13 @@ public class AnimationQueue implements Animator.AnimatorListener {
     private int currentQueue = 0;
     private AnimatedCallback mAnimateCallbacl;
     private static final String TAG = "AnimationQueue";
+    private int playCount = 0;
 
     public AnimationQueue(int startDaelayTime, BaseAnimationControl animationControl){
         nextQueue(startDaelayTime, animationControl);
     }
 
-    public AnimationQueue start(){
+    public AnimationQueue startByQueue(){
         final BaseAnimationControl baseAnimationControl = ((BaseAnimationControl)animationControls.get(currentQueue).get("animObj"));
         int delay = (int) animationControls.get(currentQueue).get("delay");
         new Handler().postDelayed(new Runnable() {
@@ -35,11 +36,27 @@ public class AnimationQueue implements Animator.AnimatorListener {
         return this;
     }
 
-    public AnimationQueue startDelay(int millisec){
+    public AnimationQueue startByQueueDelay(int millisec){
         ((BaseAnimationControl)animationControls.get(currentQueue).get("animObj")).startDelay(millisec, this);
         return this;
     }
 
+    public void startTogether(){
+        for (HashMap<String, Object> animationControl : animationControls) {
+            BaseAnimationControl baseAnimationControl = (BaseAnimationControl) animationControl.get("animObj");
+            int delay = (int) animationControl.get("delay");
+            baseAnimationControl.startDelay(delay, new CustomAnimatorCallback(baseAnimationControl) {
+                @Override
+                public void onAnimationEnd(Animator animator, BaseAnimationControl animationControl) {
+                    if (mAnimateCallbacl != null) mAnimateCallbacl.eachQueueFinished(animationControl);
+                    playCount++;
+                    if (playCount >= animationControls.size()){
+                        if (mAnimateCallbacl != null) mAnimateCallbacl.finished();
+                    }
+                }
+            });
+        }
+    }
 
     public AnimationQueue nextQueue(int delayTime, BaseAnimationControl control){
         HashMap<String, Object> obj = new HashMap<>();
@@ -66,7 +83,7 @@ public class AnimationQueue implements Animator.AnimatorListener {
         }
         currentQueue++;
         if (currentQueue < animationControls.size()){
-            start();
+            startByQueue();
         } else {
             Log.i(TAG, "onAnimationEnd: ");
             if (mAnimateCallbacl != null) {
