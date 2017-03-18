@@ -16,25 +16,18 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, AnimationQueue.AnimatedCallback {
     RelativeLayout main;
-    ImageView img, img2, img3, play;
+    ImageView img, img2, img3;
 
     private static final String TAG = "MainActivity";
     private Random mRan;
-    private int mCount = 0;
-    private int mLastRes = 0;
-    private int maxCount = 10;
 
     public void init(){
         setContentView(R.layout.activity_main);
         main = (RelativeLayout) findViewById(R.id.main);
-        play = (ImageView) findViewById(R.id.paly);
         img = (ImageView) findViewById(R.id.card1);
         img2 = (ImageView) findViewById(R.id.card2);
         img3 = (ImageView) findViewById(R.id.card3);
-        img.setOnClickListener(this);
-        img2.setOnClickListener(this);
-        img3.setOnClickListener(this);
-        play.setOnClickListener(this);
+        main.setOnClickListener(this);
         mRan = new Random();
         firstSetupView();
     }
@@ -54,26 +47,64 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         main.post(new Runnable() {
             @Override
             public void run() {
-                BaseAnimationControl b1 = new ImageAnimationControl(img).moveToCenterVertical(main).moveToCenterHorizontal(main);
-                BaseAnimationControl b2 = new ImageAnimationControl(img2);
+
+                // STEP1
+                BaseAnimationControl b1 = new BaseAnimationControl(img).moveToCenterVertical(main).moveToCenterHorizontal(main);
+
+                BaseAnimationControl b2 = new BaseAnimationControl(img2);
                 b2.stackToLeftOf(b1).marginRight(50);
-                BaseAnimationControl b3 = new ImageAnimationControl(img3);
+
+                BaseAnimationControl b3 = new BaseAnimationControl(img3);
                 b3.stackToRightOf(b1).marginLeft(50);
-                AnimationQueue animationQueue = new AnimationQueue(0, b1);
+
+                AnimationQueue animationQueue = new AnimationQueue();
+                animationQueue.nextQueue(0, b1);
                 animationQueue.nextQueue(0, b2);
                 animationQueue.nextQueue(0, b3);
-                animationQueue.setCallback(new AnimationQueue.AnimatedCallback() {
-                    @Override
-                    public void finished() {
+                animationQueue.startTogether();
 
-                    }
+                // STEP2
+                BaseAnimationControl b12 = new BaseAnimationControl(img);
+                BaseAnimationControl b22 = new BaseAnimationControl(img2);
+                b22.stackToTopOf(b12).marginBottom(50);
 
-                    @Override
-                    public void eachQueueFinished(BaseAnimationControl control) {
-                        Log.i(TAG, "eachQueueFinished: " + control.getView().getId());
-                    }
-                });
-                animationQueue.startByQueue();
+                BaseAnimationControl b32 = new BaseAnimationControl(img3);
+                b32.stackToBottomOf(b12).marginTop(50);
+
+                AnimationQueue animationQueue2 = new AnimationQueue();
+                animationQueue2.nextQueue(0, b12);
+                animationQueue2.nextQueue(0, b22);
+                animationQueue2.nextQueue(0, b32);
+                animationQueue2.startTogetherDelay(1000);
+
+                // STEP3
+                BaseAnimationControl b13 = new BaseAnimationControl(img);
+                BaseAnimationControl b23 = new BaseAnimationControl(img2);
+                b23.stackToRightOf(b13).marginLeft(50);
+
+                BaseAnimationControl b33 = new BaseAnimationControl(img3);
+                b33.stackToLeftOf(b13).marginRight(50);
+
+                AnimationQueue animationQueue3 = new AnimationQueue();
+                animationQueue3.nextQueue(0, b13);
+                animationQueue3.nextQueue(0, b23);
+                animationQueue3.nextQueue(0, b33);
+                animationQueue3.startTogetherDelay(2000);
+
+                // STEP4
+                BaseAnimationControl b14 = new BaseAnimationControl(img);
+                BaseAnimationControl b24 = new BaseAnimationControl(img2);
+                b24.moveToCenterHorizontal(main);
+
+                BaseAnimationControl b34 = new BaseAnimationControl(img3);
+                b34.moveToCenterHorizontal(main);
+
+                AnimationQueue animationQueue4 = new AnimationQueue();
+                animationQueue4.nextQueue(0, b14);
+                animationQueue4.nextQueue(0, b24);
+                animationQueue4.nextQueue(0, b34);
+                animationQueue4.setCallback(MainActivity.this);
+                animationQueue4.startTogetherDelay(3000);
             }
         });
     }
@@ -89,9 +120,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
+                firstSetupView();
             }
-        }, 120);
+        }, 1000);
     }
 
     @Override
