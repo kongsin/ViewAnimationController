@@ -3,16 +3,19 @@
 ![Sample Image](https://github.com/kongsin/SlideTab/blob/master/videotogif_2017.03.18_18.00.04.gif)
 ![Sample Image](https://github.com/kongsin/ViewAnimatorController/blob/master/videotogif_2017.03.19_04.04.53.gif)
 
-------
+- example code
+_https://github.com/kongsin/SlideTab_
+
+..........
 
 * BaseAnimationControl is an animation object
     ```JAVA
      BaseAnimationControl imageAnimObj = new BaseAnimationControl(img);
     ```
 * AnimationQueue for manage queue of the animation object
-... nextQueue for add animation queue
-... startByQueue for start as a queue
-... startTogether for play all animation together
+..* nextQueue for add animation queue
+..* startByQueue for start as a queue
+..* startTogether for play all animation together
 
 ```JAVA
                 AnimationQueue animationQueue = new AnimationQueue();
