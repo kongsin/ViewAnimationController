@@ -280,6 +280,7 @@ public class BaseAnimationControl {
         for (IAnimateSet animateSet : animateSets) {
             if (animateSet instanceof X){
                 animateSet.setValue(animateSet.getValue() + value);
+                break;
             }
         }
         return this;
@@ -289,6 +290,7 @@ public class BaseAnimationControl {
         for (IAnimateSet animateSet : animateSets) {
             if (animateSet instanceof X){
                 animateSet.setValue(animateSet.getValue() - value);
+                break;
             }
         }
         return this;
@@ -298,6 +300,7 @@ public class BaseAnimationControl {
         for (IAnimateSet animateSet : animateSets) {
             if (animateSet instanceof Y){
                 animateSet.setValue(animateSet.getValue() + value);
+                break;
             }
         }
         return this;
@@ -307,6 +310,7 @@ public class BaseAnimationControl {
         for (IAnimateSet animateSet : animateSets) {
             if (animateSet instanceof Y){
                 animateSet.setValue(animateSet.getValue() - value);
+                break;
             }
         }
         return this;
