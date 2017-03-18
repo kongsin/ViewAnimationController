@@ -11,7 +11,8 @@
                 BaseAnimationControl b3 = new ImageAnimationControl(img3);
                 b3.stackToRightOf(b1).marginLeft(50);
                 
-                AnimationQueue animationQueue = new AnimationQueue(0, b1);
+                AnimationQueue animationQueue = new AnimationQueue();
+                animationQueue.nextQueue(0, b1);                
                 animationQueue.nextQueue(0, b2);
                 animationQueue.nextQueue(0, b3);
                 animationQueue.setCallback(new AnimationQueue.AnimatedCallback() {
