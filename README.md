@@ -5,14 +5,33 @@
 
 ------
 
+* BaseAnimationControl is an animation object
+    ```JAVA
+     BaseAnimationControl imageAnimObj = new BaseAnimationControl(img);
+    ```
+* AnimationQueue for manage queue of the animation object
+... nextQueue for add animation queue
+... startByQueue for start as a queue
+... startTogether for play all animation together
+
+```JAVA
+                AnimationQueue animationQueue = new AnimationQueue();
+                animationQueue.nextQueue(0, b1);                
+                animationQueue.nextQueue(0, b2);
+                animationQueue.nextQueue(0, b3);
+                animationQueue.startByQueue();
+                //or
+                //animationQueue.startTogether();
+```
+
 ### Example
 ```JAVA
-                BaseAnimationControl b1 = new ImageAnimationControl(img).moveToCenterVertical(main).moveToCenterHorizontal(main);
+                BaseAnimationControl b1 = new BaseAnimationControl(img).moveToCenterVertical(main).moveToCenterHorizontal(main);
                 
-                BaseAnimationControl b2 = new ImageAnimationControl(img2);
+                BaseAnimationControl b2 = new BaseAnimationControl(img2);
                 b2.stackToLeftOf(b1).marginRight(50);
                 
-                BaseAnimationControl b3 = new ImageAnimationControl(img3);
+                BaseAnimationControl b3 = new BaseAnimationControl(img3);
                 b3.stackToRightOf(b1).marginLeft(50);
                 
                 AnimationQueue animationQueue = new AnimationQueue();
