@@ -1,5 +1,7 @@
 # ViewAnimatorController
 
+![Sample Image](https://github.com/kongsin/ViewAnimatorController/blob/master/videotogif_2017.03.19_04.04.53.gif)
+
 ```JAVA
                 BaseAnimationControl b1 = new ImageAnimationControl(img).moveToCenterVertical(main).moveToCenterHorizontal(main);
                 
