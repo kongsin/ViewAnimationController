@@ -12,10 +12,10 @@ _https://github.com/kongsin/SlideTab_
     ```JAVA
      BaseAnimationControl imageAnimObj = new BaseAnimationControl(img);
     ```
-* AnimationQueue for manage queue of the animation object
-- AnimationQueue.nextQueue for add animation queue
-- AnimationQueue.startByQueue for start as a queue
-- AnimationQueue.startTogether for play all animation together
+* **AnimationQueue** for manage queue of the animation object
+- **AnimationQueue.nextQueue** for add animation queue
+- **AnimationQueue.startByQueue** for start as a queue
+- **AnimationQueue.startTogether** for play all animation together
 
 ```JAVA
                 AnimationQueue animationQueue = new AnimationQueue();
