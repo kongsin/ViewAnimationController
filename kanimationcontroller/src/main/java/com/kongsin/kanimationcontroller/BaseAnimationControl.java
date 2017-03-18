@@ -147,41 +147,41 @@ public class BaseAnimationControl {
         return this;
     }
 
-    public BaseAnimationControl goToLeft(ViewGroup rootView){
-        animateSets.add(new X(rootView.getLeft()));
+    public BaseAnimationControl goToLeft(ViewGroup parent){
+        animateSets.add(new X(parent.getLeft()));
         return this;
     }
 
-    public BaseAnimationControl goToRight(ViewGroup rootView){
-        float screenW = rootView.getRight();
+    public BaseAnimationControl goToRight(ViewGroup parent){
+        float screenW = parent.getRight();
         float destVal = screenW - getScaledWidth();
         animateSets.add(new X(destVal));
         return this;
     }
 
-    public BaseAnimationControl goToTop(ViewGroup rootView){
-        float top = rootView.getTop();
+    public BaseAnimationControl goToTop(ViewGroup parent){
+        float top = parent.getTop();
         float scale = (getScaledHeight() - getHeight());
         animateSets.add(new Y(top + (scale / 2)));
         return this;
     }
 
-    public BaseAnimationControl goToBottom(ViewGroup rootView){
-        float screenHeight = rootView.getBottom();
+    public BaseAnimationControl goToBottom(ViewGroup parent){
+        float screenHeight = parent.getBottom();
         float destVal = screenHeight - (getHeight() + ((getScaledHeight() - getHeight()) / 2));
         animateSets.add(new Y(destVal));
         return this;
     }
 
-    public BaseAnimationControl moveToCenterHorizontal(ViewGroup rootView){
-        float screenW = rootView.getWidth();
+    public BaseAnimationControl moveToCenterHorizontal(ViewGroup parent){
+        float screenW = parent.getWidth();
         float destVal = (screenW / 2) - (getWidth() / 2);
         animateSets.add(new X(destVal));
         return this;
     }
 
-    public BaseAnimationControl moveToCenterVertical(ViewGroup rootView){
-        float screenH = rootView.getHeight();
+    public BaseAnimationControl moveToCenterVertical(ViewGroup parent){
+        float screenH = parent.getHeight();
         float destVal = (screenH / 2) - (getHeight() / 2);
         animateSets.add(new Y(destVal));
         return this;
