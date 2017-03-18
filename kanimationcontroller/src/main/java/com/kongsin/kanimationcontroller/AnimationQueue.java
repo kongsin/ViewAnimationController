@@ -20,6 +20,10 @@ public class AnimationQueue implements Animator.AnimatorListener {
     private static final String TAG = "AnimationQueue";
     private int playCount = 0;
 
+    public AnimationQueue(){
+
+    }
+
     public AnimationQueue(int startDaelayTime, BaseAnimationControl animationControl){
         nextQueue(startDaelayTime, animationControl);
     }

@@ -205,6 +205,7 @@ public class BaseAnimationControl {
             value -= ((getScaledHeight() - getHeight())/2);
         }
         animateSets.add(new Y(value));
+        animateSets.add(new X(_baseAnimationControl.getX()));
         return this;
     }
 
@@ -226,6 +227,7 @@ public class BaseAnimationControl {
             value += ((getScaledHeight() - getHeight())/2);
         }
         animateSets.add(new Y(value));
+        animateSets.add(new X(_baseAnimationControl.getX()));
         return this;
     }
 
@@ -242,6 +244,7 @@ public class BaseAnimationControl {
             value += ((getScaledWidth() - getWidth())/2);
         }
         animateSets.add(new X(value));
+        animateSets.add(new Y(_baseAnimationControl.getY()));
         return this;
     }
 
@@ -258,6 +261,7 @@ public class BaseAnimationControl {
             value -= ((getScaledWidth() - getWidth())/2);
         }
         animateSets.add(new X(value));
+        animateSets.add(new Y(_baseAnimationControl.getY()));
         return this;
     }
 
