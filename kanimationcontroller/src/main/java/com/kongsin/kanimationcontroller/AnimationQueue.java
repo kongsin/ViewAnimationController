@@ -40,9 +40,18 @@ public class AnimationQueue implements Animator.AnimatorListener {
         return this;
     }
 
-    public AnimationQueue startByQueueDelay(int millisec){
+    public AnimationQueue startByQueueDelay(long millisec){
         ((BaseAnimationControl)animationControls.get(currentQueue).get("animObj")).startDelay(millisec, this);
         return this;
+    }
+
+    public void startTogetherDelay(long millisec){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startTogether();
+            }
+        }, millisec);
     }
 
     public void startTogether(){

@@ -122,7 +122,7 @@ public class BaseAnimationControl {
         return mView;
     }
 
-    public BaseAnimationControl startDelay(int milliseconds, final Animator.AnimatorListener listener){
+    public BaseAnimationControl startDelay(long milliseconds, final Animator.AnimatorListener listener){
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -304,9 +304,10 @@ public class BaseAnimationControl {
         for (IAnimateSet animateSet : animateSets) {
             if (animateSet instanceof Y){
                 animateSet.setValue(animateSet.getValue() + value);
-                break;
+                return this;
             }
         }
+        animateSets.add(new Y(getY() + value));
         return this;
     }
 
@@ -314,9 +315,10 @@ public class BaseAnimationControl {
         for (IAnimateSet animateSet : animateSets) {
             if (animateSet instanceof Y){
                 animateSet.setValue(animateSet.getValue() - value);
-                break;
+                return this;
             }
         }
+        animateSets.add(new Y(getY() - value));
         return this;
     }
 
