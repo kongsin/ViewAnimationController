@@ -25,6 +25,7 @@ public class Size extends KValueAnimator {
         PropertyValuesHolder w = PropertyValuesHolder.ofFloat("W", mValue[0]);
         PropertyValuesHolder h = PropertyValuesHolder.ofFloat("H", mValue[1]);
         setValueAnimatorProperty(w, h);
+        start();
     }
 
     @Override
