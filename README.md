@@ -1,6 +1,6 @@
 # ViewAnimatorController
 
-![Sample Image](https://github.com/kongsin/SlideTab/blob/master/videotogif_2017.03.18_18.00.04.gif)
+![Sample Image](https://github.com/kongsin/SlideTab/blob/master/preview.gif)
 ![Sample Image](https://github.com/kongsin/ViewAnimatorController/blob/master/videotogif_2017.03.19_04.04.53.gif)
 
 - example code
