@@ -300,6 +300,17 @@ public class BaseAnimationObject {
         return this;
     }
 
+
+    public BaseAnimationObject translationXBy(float value){
+        animateSets.add(new TransXBy(value));
+        return this;
+    }
+
+    public BaseAnimationObject translationYBy(float value){
+        animateSets.add(new TransYBy(value));
+        return this;
+    }
+
     public BaseAnimationObject rotationX(float value){
         animateSets.add(new RotationX(value));
         return this;
