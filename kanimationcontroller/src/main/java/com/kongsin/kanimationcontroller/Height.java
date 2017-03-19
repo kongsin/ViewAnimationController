@@ -16,7 +16,7 @@ public class Height extends KValueAnimator {
 
     @Override
     public void animateView(View view) {
-        PropertyValuesHolder h = PropertyValuesHolder.ofFloat("H", mValue[0]);
+        PropertyValuesHolder h = PropertyValuesHolder.ofFloat("H", view.getHeight(), mValue[0]);
         setValueAnimatorProperty(h);
         start();
     }

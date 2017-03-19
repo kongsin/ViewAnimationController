@@ -27,10 +27,20 @@ public class BaseAnimationObject {
     }
 
     public int getHeight(){
+        for (IAnimateSet animateSet : animateSets) {
+            if (animateSet instanceof Height){
+                return (int) animateSet.getValue();
+            }
+        }
        return mView.getHeight();
     }
 
     public int getWidth(){
+        for (IAnimateSet animateSet : animateSets) {
+            if (animateSet instanceof Width){
+                return (int) animateSet.getValue();
+            }
+        }
         return mView.getWidth();
     }
 
@@ -136,41 +146,41 @@ public class BaseAnimationObject {
         return this;
     }
 
-    public BaseAnimationObject goToLeft(ViewGroup parent){
-        animateSets.add(new X(parent.getLeft()));
+    public BaseAnimationObject goToLeft(BaseAnimationObject parent){
+        animateSets.add(new X(parent.getX()));
         return this;
     }
 
-    public BaseAnimationObject goToRight(ViewGroup parent){
-        float screenW = parent.getRight();
+    public BaseAnimationObject goToRight(BaseAnimationObject parent){
+        float screenW = parent.getX() + parent.getScaledWidth();
         float destVal = screenW - getScaledWidth();
         animateSets.add(new X(destVal));
         return this;
     }
 
-    public BaseAnimationObject goToTop(ViewGroup parent){
-        float top = parent.getTop();
+    public BaseAnimationObject goToTop(BaseAnimationObject parent){
+        float top = parent.getY();
         float scale = (getScaledHeight() - getHeight());
         animateSets.add(new Y(top + (scale / 2)));
         return this;
     }
 
-    public BaseAnimationObject goToBottom(ViewGroup parent){
-        float screenHeight = parent.getBottom();
+    public BaseAnimationObject goToBottom(BaseAnimationObject parent){
+        float screenHeight = parent.getY() + getScaledHeight();
         float destVal = screenHeight - (getHeight() + ((getScaledHeight() - getHeight()) / 2));
         animateSets.add(new Y(destVal));
         return this;
     }
 
-    public BaseAnimationObject moveToCenterHorizontal(ViewGroup parent){
-        float screenW = parent.getWidth();
+    public BaseAnimationObject moveToCenterHorizontal(BaseAnimationObject parent){
+        float screenW = parent.getScaledWidth();
         float destVal = (screenW / 2) - (getScaledWidth() / 2);
         animateSets.add(new X(destVal));
         return this;
     }
 
-    public BaseAnimationObject moveToCenterVertical(ViewGroup parent){
-        float screenH = parent.getHeight();
+    public BaseAnimationObject moveToCenterVertical(BaseAnimationObject parent){
+        float screenH = parent.getScaledHeight();
         float destVal = (screenH / 2) - (getScaledHeight() / 2);
         animateSets.add(new Y(destVal));
         return this;
@@ -327,11 +337,6 @@ public class BaseAnimationObject {
         return this;
     }
 
-    public BaseAnimationObject size(int w, int h){
-        animateSets.add(new Size(mView, w, h));
-        return this;
-    }
-
     public BaseAnimationObject width(int w){
         animateSets.add(new Width(mView, w));
         return this;
@@ -339,6 +344,11 @@ public class BaseAnimationObject {
 
     public BaseAnimationObject height(int h){
         animateSets.add(new Height(mView,h));
+        return this;
+    }
+
+    public BaseAnimationObject alpha(int value){
+        animateSets.add(new Alpha(value));
         return this;
     }
 

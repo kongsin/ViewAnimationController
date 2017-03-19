@@ -13,7 +13,7 @@ import com.kongsin.kanimationcontroller.BaseAnimationObject;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, AnimationQueue.AnimatedCallback {
-    RelativeLayout main;
+    BaseAnimationObject main;
     ImageView img, img2, img3;
 
     private static final String TAG = "MainActivity";
@@ -21,11 +21,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void init(){
         setContentView(R.layout.activity_main);
-        main = (RelativeLayout) findViewById(R.id.main);
+        main = new BaseAnimationObject(findViewById(R.id.main));
         img = (ImageView) findViewById(R.id.card1);
         img2 = (ImageView) findViewById(R.id.card2);
         img3 = (ImageView) findViewById(R.id.card3);
-        main.setOnClickListener(this);
+        main.getView().setOnClickListener(this);
         mRan = new Random();
         firstSetupView();
     }
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     public void firstSetupView(){
-        main.post(new Runnable() {
+        main.getView().post(new Runnable() {
             @Override
             public void run() {
 

@@ -16,7 +16,7 @@ public class Width extends KValueAnimator {
 
     @Override
     public void animateView(View view) {
-        PropertyValuesHolder w = PropertyValuesHolder.ofFloat("W", mValue[0]);
+        PropertyValuesHolder w = PropertyValuesHolder.ofFloat("W", view.getWidth(), mValue[0]);
         setValueAnimatorProperty(w);
         start();
     }
