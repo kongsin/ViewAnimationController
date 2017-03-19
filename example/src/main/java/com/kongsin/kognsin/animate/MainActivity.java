@@ -47,10 +47,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void run() {
 
                 // STEP1
-                BaseAnimationObject b1 = new BaseAnimationObject(img).moveToCenterVertical(main).moveToCenterHorizontal(main);
+                BaseAnimationObject b1 = new BaseAnimationObject(img);
                 BaseAnimationObject b2 = new BaseAnimationObject(img2);
                 BaseAnimationObject b3 = new BaseAnimationObject(img3);
 
+                b1.moveToCenterVertical(main).moveToCenterHorizontal(main);
                 b2.stackToLeftOf(b1).marginRight(50);
                 b3.stackToRightOf(b1).marginLeft(50);
 
