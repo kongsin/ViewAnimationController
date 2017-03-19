@@ -54,9 +54,10 @@ public class BaseAnimationObject {
     }
 
     public BaseAnimationObject newAnimate(){
-        mView.animate().setDuration(250);
-        animateSets.clear();
-        return this;
+        BaseAnimationObject baseAnimationObject = new BaseAnimationObject(mView);
+        baseAnimationObject.animateSets.clear();
+        baseAnimationObject.mView.clearAnimation();
+        return baseAnimationObject;
     }
 
     public BaseAnimationObject setDuration(int duration){
