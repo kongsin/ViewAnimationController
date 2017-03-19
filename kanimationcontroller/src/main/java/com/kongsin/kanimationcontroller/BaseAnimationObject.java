@@ -184,7 +184,6 @@ public class BaseAnimationObject {
             value -= ((getScaledHeight() - getHeight())/2);
         }
         animateSets.add(new Y(value));
-        animateSets.add(new X(_baseAnimationObject.getX()));
         return this;
     }
 
@@ -196,7 +195,6 @@ public class BaseAnimationObject {
             value += ((getScaledHeight() - getHeight())/2);
         }
         animateSets.add(new Y(value));
-        animateSets.add(new X(_baseAnimationObject.getX()));
         return this;
     }
 
@@ -208,7 +206,6 @@ public class BaseAnimationObject {
             value += ((getScaledWidth() - getWidth())/2);
         }
         animateSets.add(new X(value));
-        animateSets.add(new Y(_baseAnimationObject.getY()));
         return this;
     }
 
@@ -220,7 +217,6 @@ public class BaseAnimationObject {
             value -= ((getScaledWidth() - getWidth())/2);
         }
         animateSets.add(new X(value));
-        animateSets.add(new Y(_baseAnimationObject.getY()));
         return this;
     }
 
@@ -328,6 +324,26 @@ public class BaseAnimationObject {
 
     public BaseAnimationObject rotationYBy(float value){
         animateSets.add(new RotationYBy(value));
+        return this;
+    }
+
+    public BaseAnimationObject size(int w, int h){
+        animateSets.add(new Size(mView, w, h));
+        return this;
+    }
+
+    public BaseAnimationObject width(int w){
+        animateSets.add(new Width(mView, w));
+        return this;
+    }
+
+    public BaseAnimationObject height(int h){
+        animateSets.add(new Height(mView,h));
+        return this;
+    }
+
+    public BaseAnimationObject addCustomAnimation(IAnimateSet animateSet){
+        animateSets.add(animateSet);
         return this;
     }
 
