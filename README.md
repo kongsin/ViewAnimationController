@@ -10,7 +10,7 @@ _https://github.com/kongsin/SlideTab_
 
 * BaseAnimationControl is an animation object
     ```JAVA
-     BaseAnimationControl imageAnimObj = new BaseAnimationControl(img);
+     BaseAnimationObject imageAnimObj = new BaseAnimationObject(img);
     ```
 * **AnimationQueue** for manage queue of the animation object
 - **AnimationQueue.nextQueue** for add animation queue
@@ -29,12 +29,12 @@ _https://github.com/kongsin/SlideTab_
 
 ### Example
 ```JAVA
-                BaseAnimationControl b1 = new BaseAnimationControl(img).moveToCenterVertical(main).moveToCenterHorizontal(main);
+                BaseAnimationObject b1 = new BaseAnimationObject(img).moveToCenterVertical(main).moveToCenterHorizontal(main);
                 
-                BaseAnimationControl b2 = new BaseAnimationControl(img2);
+                BaseAnimationObject b2 = new BaseAnimationObject(img2);
                 b2.stackToLeftOf(b1).marginRight(50);
                 
-                BaseAnimationControl b3 = new BaseAnimationControl(img3);
+                BaseAnimationObject b3 = new BaseAnimationObject(img3);
                 b3.stackToRightOf(b1).marginLeft(50);
                 
                 AnimationQueue animationQueue = new AnimationQueue();
@@ -48,7 +48,7 @@ _https://github.com/kongsin/SlideTab_
                     }
 
                     @Override
-                    public void eachQueueFinished(BaseAnimationControl control) {
+                    public void eachQueueFinished(BaseAnimationObject control) {
                         Log.i(TAG, "eachQueueFinished: " + control.getView().getId());
                     }
                 });
