@@ -3,14 +3,12 @@ package com.kongsin.kognsin.animate;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.kongsin.kanimationcontroller.AnimationQueue;
-import com.kongsin.kanimationcontroller.BaseAnimationControl;
-import com.kongsin.kanimationcontroller.ImageAnimationControl;
+import com.kongsin.kanimationcontroller.BaseAnimationObject;
 
 import java.util.Random;
 
@@ -49,12 +47,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void run() {
 
                 // STEP1
-                BaseAnimationControl b1 = new BaseAnimationControl(img).moveToCenterVertical(main).moveToCenterHorizontal(main);
+                BaseAnimationObject b1 = new BaseAnimationObject(img).moveToCenterVertical(main).moveToCenterHorizontal(main);
 
-                BaseAnimationControl b2 = new BaseAnimationControl(img2);
+                BaseAnimationObject b2 = new BaseAnimationObject(img2);
                 b2.stackToLeftOf(b1).marginRight(50);
 
-                BaseAnimationControl b3 = new BaseAnimationControl(img3);
+                BaseAnimationObject b3 = new BaseAnimationObject(img3);
                 b3.stackToRightOf(b1).marginLeft(50);
 
                 AnimationQueue animationQueue = new AnimationQueue();
@@ -64,11 +62,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 animationQueue.startTogether();
 
                 // STEP2
-                BaseAnimationControl b12 = new BaseAnimationControl(img);
-                BaseAnimationControl b22 = new BaseAnimationControl(img2);
+                BaseAnimationObject b12 = new BaseAnimationObject(img);
+                BaseAnimationObject b22 = new BaseAnimationObject(img2);
                 b22.stackToTopOf(b12).marginBottom(50);
 
-                BaseAnimationControl b32 = new BaseAnimationControl(img3);
+                BaseAnimationObject b32 = new BaseAnimationObject(img3);
                 b32.stackToBottomOf(b12).marginTop(50);
 
                 AnimationQueue animationQueue2 = new AnimationQueue();
@@ -78,11 +76,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 animationQueue2.startTogetherDelay(1000);
 
                 // STEP3
-                BaseAnimationControl b13 = new BaseAnimationControl(img);
-                BaseAnimationControl b23 = new BaseAnimationControl(img2);
+                BaseAnimationObject b13 = new BaseAnimationObject(img);
+                BaseAnimationObject b23 = new BaseAnimationObject(img2);
                 b23.stackToRightOf(b13).marginLeft(50);
 
-                BaseAnimationControl b33 = new BaseAnimationControl(img3);
+                BaseAnimationObject b33 = new BaseAnimationObject(img3);
                 b33.stackToLeftOf(b13).marginRight(50);
 
                 AnimationQueue animationQueue3 = new AnimationQueue();
@@ -92,11 +90,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 animationQueue3.startTogetherDelay(2000);
 
                 // STEP4
-                BaseAnimationControl b14 = new BaseAnimationControl(img);
-                BaseAnimationControl b24 = new BaseAnimationControl(img2);
+                BaseAnimationObject b14 = new BaseAnimationObject(img);
+                BaseAnimationObject b24 = new BaseAnimationObject(img2);
                 b24.moveToCenterHorizontal(main);
 
-                BaseAnimationControl b34 = new BaseAnimationControl(img3);
+                BaseAnimationObject b34 = new BaseAnimationObject(img3);
                 b34.moveToCenterHorizontal(main);
 
                 AnimationQueue animationQueue4 = new AnimationQueue();
@@ -126,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void eachQueueFinished(BaseAnimationControl control) {
+    public void eachQueueFinished(BaseAnimationObject control) {
 
     }
 }

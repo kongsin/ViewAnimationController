@@ -12,13 +12,13 @@ import java.util.List;
  * Created by kognsin on 9/24/2016.
  */
 
-public class BaseAnimationControl {
+public class BaseAnimationObject {
 
     protected View mView;
-    private static final String TAG = "BaseAnimationControl";
+    private static final String TAG = "BaseAnimationObject";
     protected List<IAnimateSet> animateSets = new ArrayList<>();
 
-    public BaseAnimationControl(View view) {
+    public BaseAnimationObject(View view) {
         this.mView = view;
     }
 
@@ -50,13 +50,13 @@ public class BaseAnimationControl {
         return getHeight();
     }
 
-    public BaseAnimationControl newAnimate(){
+    public BaseAnimationObject newAnimate(){
         mView.animate().setDuration(250);
         animateSets.clear();
         return this;
     }
 
-    public BaseAnimationControl setDuration(int duration){
+    public BaseAnimationObject setDuration(int duration){
         mView.animate().setDuration(duration);
         return this;
     }
@@ -100,17 +100,17 @@ public class BaseAnimationControl {
         return mView.getY();
     }
 
-    public BaseAnimationControl start(){
+    public BaseAnimationObject start(){
         start(null);
         return this;
     }
 
-    public BaseAnimationControl startDelay(int millisec){
+    public BaseAnimationObject startDelay(int millisec){
         startDelay(millisec, null);
         return this;
     }
 
-    public BaseAnimationControl start(Animator.AnimatorListener listener){
+    public BaseAnimationObject start(Animator.AnimatorListener listener){
         for (IAnimateSet animateSet : animateSets) {
             animateSet.animateView(mView);
         }
@@ -122,7 +122,7 @@ public class BaseAnimationControl {
         return mView;
     }
 
-    public BaseAnimationControl startDelay(long milliseconds, final Animator.AnimatorListener listener){
+    public BaseAnimationObject startDelay(long milliseconds, final Animator.AnimatorListener listener){
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -132,155 +132,124 @@ public class BaseAnimationControl {
         return this;
     }
 
-    public BaseAnimationControl gone(){
+    public BaseAnimationObject gone(){
         animateSets.add(new Gone());
         return this;
     }
 
-    public BaseAnimationControl reset(){
+    public BaseAnimationObject reset(){
         animateSets.add(new Reset());
         return this;
     }
 
-    public BaseAnimationControl flip(int decree){
+    public BaseAnimationObject flip(int decree){
         animateSets.add(new RotationY(decree));
         return this;
     }
 
-    public BaseAnimationControl goToLeft(ViewGroup parent){
+    public BaseAnimationObject goToLeft(ViewGroup parent){
         animateSets.add(new X(parent.getLeft()));
         return this;
     }
 
-    public BaseAnimationControl goToRight(ViewGroup parent){
+    public BaseAnimationObject goToRight(ViewGroup parent){
         float screenW = parent.getRight();
         float destVal = screenW - getScaledWidth();
         animateSets.add(new X(destVal));
         return this;
     }
 
-    public BaseAnimationControl goToTop(ViewGroup parent){
+    public BaseAnimationObject goToTop(ViewGroup parent){
         float top = parent.getTop();
         float scale = (getScaledHeight() - getHeight());
         animateSets.add(new Y(top + (scale / 2)));
         return this;
     }
 
-    public BaseAnimationControl goToBottom(ViewGroup parent){
+    public BaseAnimationObject goToBottom(ViewGroup parent){
         float screenHeight = parent.getBottom();
         float destVal = screenHeight - (getHeight() + ((getScaledHeight() - getHeight()) / 2));
         animateSets.add(new Y(destVal));
         return this;
     }
 
-    public BaseAnimationControl moveToCenterHorizontal(ViewGroup parent){
+    public BaseAnimationObject moveToCenterHorizontal(ViewGroup parent){
         float screenW = parent.getWidth();
-        float destVal = (screenW / 2) - (getWidth() / 2);
+        float destVal = (screenW / 2) - (getScaledWidth() / 2);
         animateSets.add(new X(destVal));
         return this;
     }
 
-    public BaseAnimationControl moveToCenterVertical(ViewGroup parent){
+    public BaseAnimationObject moveToCenterVertical(ViewGroup parent){
         float screenH = parent.getHeight();
-        float destVal = (screenH / 2) - (getHeight() / 2);
+        float destVal = (screenH / 2) - (getScaledHeight() / 2);
         animateSets.add(new Y(destVal));
         return this;
     }
 
-    public BaseAnimationControl stackToTopOf(BaseAnimationControl _baseAnimationControl){
-        float value;
-        if (_baseAnimationControl instanceof ImageAnimationControl){
-            value = _baseAnimationControl.getY() - _baseAnimationControl.getScaledHeight();
-            if (_baseAnimationControl.getHeight() > _baseAnimationControl.getScaledHeight()){
-                value += ((_baseAnimationControl.getHeight() - _baseAnimationControl.getScaledHeight()) / 2);
-            } else {
-                value -=((_baseAnimationControl.getHeight() - _baseAnimationControl.getScaledHeight()) / 2);
-            }
-        } else {
-            value = _baseAnimationControl.getY() - _baseAnimationControl.getHeight();
-        }
+    public BaseAnimationObject stackToTopOf(BaseAnimationObject _baseAnimationObject){
+        float value = _baseAnimationObject.getY() - _baseAnimationObject.getScaledHeight();
         if (getHeight() > getScaledHeight()){
             value += ((getHeight() - getScaledHeight())/2);
         } else {
             value -= ((getScaledHeight() - getHeight())/2);
         }
         animateSets.add(new Y(value));
-        animateSets.add(new X(_baseAnimationControl.getX()));
+        animateSets.add(new X(_baseAnimationObject.getX()));
         return this;
     }
 
-    public BaseAnimationControl stackToBottomOf(BaseAnimationControl _baseAnimationControl){
-        float value;
-        if (_baseAnimationControl instanceof ImageAnimationControl){
-            value = _baseAnimationControl.getY() + _baseAnimationControl.getScaledHeight();
-            if (_baseAnimationControl.getHeight() > _baseAnimationControl.getScaledHeight()){
-                value -= ((_baseAnimationControl.getHeight() - _baseAnimationControl.getScaledHeight()) / 2);
-            } else {
-                value +=((_baseAnimationControl.getHeight() - _baseAnimationControl.getScaledHeight()) / 2);
-            }
-        } else {
-            value = _baseAnimationControl.getY() + _baseAnimationControl.getScaledHeight();
-        }
+    public BaseAnimationObject stackToBottomOf(BaseAnimationObject _baseAnimationObject){
+        float value = _baseAnimationObject.getY() + _baseAnimationObject.getScaledHeight();
         if (getHeight() > getScaledHeight()){
             value -= ((getHeight() - getScaledHeight())/2);
         } else {
             value += ((getScaledHeight() - getHeight())/2);
         }
         animateSets.add(new Y(value));
-        animateSets.add(new X(_baseAnimationControl.getX()));
+        animateSets.add(new X(_baseAnimationObject.getX()));
         return this;
     }
 
-    public BaseAnimationControl stackToRightOf(BaseAnimationControl _baseAnimationControl){
-        float value;
-        if (_baseAnimationControl instanceof ImageAnimationControl){
-            value = _baseAnimationControl.getX() + _baseAnimationControl.getScaledWidth();
-        } else {
-            value = _baseAnimationControl.getX() + _baseAnimationControl.getScaledWidth();
-        }
+    public BaseAnimationObject stackToRightOf(BaseAnimationObject _baseAnimationObject){
+        float value = _baseAnimationObject.getX() + _baseAnimationObject.getScaledWidth();
         if (getWidth() > getScaledWidth()){
             value -= ((getWidth() - getScaledWidth())/2);
         } else {
             value += ((getScaledWidth() - getWidth())/2);
         }
         animateSets.add(new X(value));
-        animateSets.add(new Y(_baseAnimationControl.getY()));
+        animateSets.add(new Y(_baseAnimationObject.getY()));
         return this;
     }
 
-    public BaseAnimationControl stackToLeftOf(BaseAnimationControl _baseAnimationControl){
-        float value;
-        if (_baseAnimationControl instanceof ImageAnimationControl){
-            value = _baseAnimationControl.getX() - _baseAnimationControl.getScaledWidth();
-        } else {
-            value = _baseAnimationControl.getX() - _baseAnimationControl.getWidth();
-        }
+    public BaseAnimationObject stackToLeftOf(BaseAnimationObject _baseAnimationObject){
+        float value = _baseAnimationObject.getX() - _baseAnimationObject.getScaledWidth();
         if (getWidth() > getScaledWidth()){
             value += ((getWidth() - getScaledWidth())/2);
         } else {
             value -= ((getScaledWidth() - getWidth())/2);
         }
         animateSets.add(new X(value));
-        animateSets.add(new Y(_baseAnimationControl.getY()));
+        animateSets.add(new Y(_baseAnimationObject.getY()));
         return this;
     }
 
-    public BaseAnimationControl space(){
-
+    public BaseAnimationObject margin(int value){
         return this;
     }
 
-    public BaseAnimationControl y(float value){
+    public BaseAnimationObject y(float value){
         animateSets.add(new Y(value - ((getHeight() - getScaledHeight())/2)));
         return this;
     }
 
-    public BaseAnimationControl x(float value){
+    public BaseAnimationObject x(float value){
         animateSets.add(new X(value - ((getWidth() - getScaledWidth())/2)));
         return this;
     }
 
-    public BaseAnimationControl marginLeft(float value){
+    public BaseAnimationObject marginLeft(float value){
         for (IAnimateSet animateSet : animateSets) {
             if (animateSet instanceof X){
                 animateSet.setValue(animateSet.getValue() + value);
@@ -290,7 +259,7 @@ public class BaseAnimationControl {
         return this;
     }
 
-    public BaseAnimationControl marginRight(float value){
+    public BaseAnimationObject marginRight(float value){
         for (IAnimateSet animateSet : animateSets) {
             if (animateSet instanceof X){
                 animateSet.setValue(animateSet.getValue() - value);
@@ -300,7 +269,7 @@ public class BaseAnimationControl {
         return this;
     }
 
-    public BaseAnimationControl marginTop(float value){
+    public BaseAnimationObject marginTop(float value){
         for (IAnimateSet animateSet : animateSets) {
             if (animateSet instanceof Y){
                 animateSet.setValue(animateSet.getValue() + value);
@@ -311,7 +280,7 @@ public class BaseAnimationControl {
         return this;
     }
 
-    public BaseAnimationControl marginBottom(float value){
+    public BaseAnimationObject marginBottom(float value){
         for (IAnimateSet animateSet : animateSets) {
             if (animateSet instanceof Y){
                 animateSet.setValue(animateSet.getValue() - value);
@@ -322,22 +291,22 @@ public class BaseAnimationControl {
         return this;
     }
 
-    public BaseAnimationControl scaleX(float value){
+    public BaseAnimationObject scaleX(float value){
         animateSets.add(new ScaleX(value));
         return this;
     }
 
-    public BaseAnimationControl scaleY(float value){
+    public BaseAnimationObject scaleY(float value){
         animateSets.add(new ScaleY(value));
         return this;
     }
 
-    public BaseAnimationControl translationX(float value){
+    public BaseAnimationObject translationX(float value){
         animateSets.add(new TransX(value));
         return this;
     }
 
-    public BaseAnimationControl translationY(float value){
+    public BaseAnimationObject translationY(float value){
         animateSets.add(new TransY(value));
         return this;
     }

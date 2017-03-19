@@ -14,34 +14,34 @@ import java.util.List;
 
 public class AnimationQueue implements Animator.AnimatorListener {
 
-    private List<HashMap<String, Object>> animationControls = new ArrayList<>();
-    private int currentQueue = 0;
-    private AnimatedCallback mAnimateCallbacl;
-    private static final String TAG = "AnimationQueue";
-    private int playCount = 0;
+    private List<HashMap<String, Object>>   animationControls = new ArrayList<>();
+    private int                             currentQueue = 0;
+    private AnimatedCallback                mAnimateCallbacl;
+    private static final String             TAG = "AnimationQueue";
+    private int                             playCount = 0;
 
     public AnimationQueue(){
 
     }
 
-    public AnimationQueue(int startDaelayTime, BaseAnimationControl animationControl){
+    public AnimationQueue(int startDaelayTime, BaseAnimationObject animationControl){
         nextQueue(startDaelayTime, animationControl);
     }
 
     public AnimationQueue startByQueue(){
-        final BaseAnimationControl baseAnimationControl = ((BaseAnimationControl)animationControls.get(currentQueue).get("animObj"));
+        final BaseAnimationObject baseAnimationObject = ((BaseAnimationObject)animationControls.get(currentQueue).get("animObj"));
         int delay = (int) animationControls.get(currentQueue).get("delay");
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                baseAnimationControl.start(AnimationQueue.this);
+                baseAnimationObject.start(AnimationQueue.this);
             }
         }, delay);
         return this;
     }
 
     public AnimationQueue startByQueueDelay(long millisec){
-        ((BaseAnimationControl)animationControls.get(currentQueue).get("animObj")).startDelay(millisec, this);
+        ((BaseAnimationObject)animationControls.get(currentQueue).get("animObj")).startDelay(millisec, this);
         return this;
     }
 
@@ -56,11 +56,11 @@ public class AnimationQueue implements Animator.AnimatorListener {
 
     public void startTogether(){
         for (HashMap<String, Object> animationControl : animationControls) {
-            BaseAnimationControl baseAnimationControl = (BaseAnimationControl) animationControl.get("animObj");
+            BaseAnimationObject baseAnimationObject = (BaseAnimationObject) animationControl.get("animObj");
             int delay = (int) animationControl.get("delay");
-            baseAnimationControl.startDelay(delay, new CustomAnimatorCallback(baseAnimationControl) {
+            baseAnimationObject.startDelay(delay, new CustomAnimatorCallback(baseAnimationObject) {
                 @Override
-                public void onAnimationEnd(Animator animator, BaseAnimationControl animationControl) {
+                public void onAnimationEnd(Animator animator, BaseAnimationObject animationControl) {
                     if (mAnimateCallbacl != null) mAnimateCallbacl.eachQueueFinished(animationControl);
                     playCount++;
                     if (playCount >= animationControls.size()){
@@ -71,7 +71,7 @@ public class AnimationQueue implements Animator.AnimatorListener {
         }
     }
 
-    public AnimationQueue nextQueue(int delayTime, BaseAnimationControl control){
+    public AnimationQueue nextQueue(int delayTime, BaseAnimationObject control){
         HashMap<String, Object> obj = new HashMap<>();
         obj.put("animObj", control);
         obj.put("delay", delayTime);
@@ -92,7 +92,7 @@ public class AnimationQueue implements Animator.AnimatorListener {
     @Override
     public void onAnimationEnd(Animator animation) {
         if (mAnimateCallbacl != null) {
-            mAnimateCallbacl.eachQueueFinished((BaseAnimationControl) animationControls.get(currentQueue).get("animObj"));
+            mAnimateCallbacl.eachQueueFinished((BaseAnimationObject) animationControls.get(currentQueue).get("animObj"));
         }
         currentQueue++;
         if (currentQueue < animationControls.size()){
@@ -121,7 +121,7 @@ public class AnimationQueue implements Animator.AnimatorListener {
 
     public interface AnimatedCallback {
         void finished();
-        void eachQueueFinished(BaseAnimationControl control);
+        void eachQueueFinished(BaseAnimationObject control);
     }
 
 }

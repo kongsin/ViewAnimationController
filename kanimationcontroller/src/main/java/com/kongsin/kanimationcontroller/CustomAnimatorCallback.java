@@ -8,13 +8,13 @@ import android.animation.Animator;
 
 public abstract class CustomAnimatorCallback implements Animator.AnimatorListener {
 
-    private BaseAnimationControl animationControl;
+    private BaseAnimationObject animationControl;
 
-    public CustomAnimatorCallback(BaseAnimationControl animationControl){
+    public CustomAnimatorCallback(BaseAnimationObject animationControl){
         this.animationControl = animationControl;
     }
 
-    public abstract void onAnimationEnd(Animator animator, BaseAnimationControl animationControl);
+    public abstract void onAnimationEnd(Animator animator, BaseAnimationObject animationControl);
 
     @Override
     public void onAnimationStart(Animator animator) {
