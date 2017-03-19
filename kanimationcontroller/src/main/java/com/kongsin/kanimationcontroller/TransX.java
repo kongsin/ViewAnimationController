@@ -19,11 +19,6 @@ public class TransX implements IAnimateSet{
     }
 
     @Override
-    public void setView(View view) {
-        view.setTranslationX(value);
-    }
-
-    @Override
     public void animateView(View view) {
         view.animate().translationX(value);
     }

@@ -6,21 +6,21 @@ import android.view.View;
  * Created by kognsin on 9/27/2016.
  */
 
-public class ScaleY implements IAnimateSet{
+public class TransXBy implements IAnimateSet{
     private float value;
+
+    public TransXBy(float value){
+        this.value = value;
+    }
 
     @Override
     public float getValue() {
         return value;
     }
 
-    public ScaleY(float value){
-        this.value = value;
-    }
-
     @Override
     public void animateView(View view) {
-        view.animate().scaleY(value);
+        view.animate().translationXBy(value);
     }
 
     @Override

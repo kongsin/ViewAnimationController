@@ -1,1 +1,1 @@
-include ':app', ':kanimationcontroller'
+include ':example', ':kanimationcontroller'

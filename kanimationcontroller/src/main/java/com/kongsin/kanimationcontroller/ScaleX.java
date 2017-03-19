@@ -19,11 +19,6 @@ public class ScaleX implements IAnimateSet{
     }
 
     @Override
-    public void setView(View view) {
-        view.setScaleX(value);
-    }
-
-    @Override
     public void animateView(View view) {
         view.animate().scaleX(value);
     }

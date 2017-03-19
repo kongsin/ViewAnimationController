@@ -19,11 +19,6 @@ public class Y implements IAnimateSet{
     }
 
     @Override
-    public void setView(View view) {
-        view.setY(value);
-    }
-
-    @Override
     public void animateView(View view) {
         view.animate().y(value);
     }

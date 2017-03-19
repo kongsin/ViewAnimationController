@@ -26,19 +26,12 @@ public class BaseAnimationObject {
         return animateSets;
     }
 
-    public boolean isGone(){
-        for (IAnimateSet animateSet : animateSets) {
-            if (animateSet instanceof Gone) return true;
-        }
-        return false;
-    }
-
     public int getHeight(){
-       return isGone() ? 0 : mView.getHeight();
+       return mView.getHeight();
     }
 
     public int getWidth(){
-        return isGone() ? 0 : mView.getWidth();
+        return mView.getWidth();
     }
 
     public float getScaledHeight(){
@@ -132,16 +125,12 @@ public class BaseAnimationObject {
         return this;
     }
 
-    public BaseAnimationObject gone(){
-        animateSets.add(new Gone());
-        return this;
-    }
-
     public BaseAnimationObject reset(){
         animateSets.add(new Reset());
         return this;
     }
 
+    @Deprecated
     public BaseAnimationObject flip(int decree){
         animateSets.add(new RotationY(decree));
         return this;
@@ -308,6 +297,26 @@ public class BaseAnimationObject {
 
     public BaseAnimationObject translationY(float value){
         animateSets.add(new TransY(value));
+        return this;
+    }
+
+    public BaseAnimationObject rotationX(float value){
+        animateSets.add(new RotationX(value));
+        return this;
+    }
+
+    public BaseAnimationObject rotationY(float value){
+        animateSets.add(new RotationY(value));
+        return this;
+    }
+
+    public BaseAnimationObject rotationXBy(float value){
+        animateSets.add(new RotationXBy(value));
+        return this;
+    }
+
+    public BaseAnimationObject rotationYBy(float value){
+        animateSets.add(new RotationYBy(value));
         return this;
     }
 

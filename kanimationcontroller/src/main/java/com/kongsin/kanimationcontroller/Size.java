@@ -14,12 +14,6 @@ public class Size extends KValueAnimator {
         super(view, value);
     }
 
-
-    @Override
-    public void setView(View view) {
-
-    }
-
     @Override
     public void animateView(View view) {
         PropertyValuesHolder w = PropertyValuesHolder.ofFloat("W", mValue[0]);

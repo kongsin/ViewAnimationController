@@ -6,7 +6,7 @@ import android.view.View;
  * Created by kognsin on 9/27/2016.
  */
 
-public class ScaleY implements IAnimateSet{
+public class RotationYBy implements IAnimateSet{
     private float value;
 
     @Override
@@ -14,13 +14,13 @@ public class ScaleY implements IAnimateSet{
         return value;
     }
 
-    public ScaleY(float value){
+    public RotationYBy(float value){
         this.value = value;
     }
 
     @Override
     public void animateView(View view) {
-        view.animate().scaleY(value);
+        view.animate().rotationYBy(value);
     }
 
     @Override

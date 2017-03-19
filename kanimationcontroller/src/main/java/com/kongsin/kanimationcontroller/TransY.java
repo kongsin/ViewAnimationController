@@ -19,11 +19,6 @@ public class TransY implements IAnimateSet{
     }
 
     @Override
-    public void setView(View view) {
-        view.setTranslationY(value);
-    }
-
-    @Override
     public void animateView(View view) {
         view.animate().translationY(value);
     }

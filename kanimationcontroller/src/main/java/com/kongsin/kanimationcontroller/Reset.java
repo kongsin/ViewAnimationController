@@ -10,34 +10,6 @@ import android.view.View;
 public class Reset implements IAnimateSet {
 
     @Override
-    public void setView(final View view) {
-        view.animate().setListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                view.setX(0);
-                view.setY(0);
-                view.setScaleY(1.0F);
-                view.setScaleX(1.0F);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
-            }
-        });
-    }
-
-    @Override
     public void animateView(final View view) {
         view.animate().setListener(new Animator.AnimatorListener() {
             @Override

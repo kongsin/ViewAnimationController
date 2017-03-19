@@ -19,11 +19,6 @@ public class X implements IAnimateSet{
     }
 
     @Override
-    public void setView(View view) {
-        view.setX(value);
-    }
-
-    @Override
     public void animateView(View view) {
         view.animate().x(value);
     }
