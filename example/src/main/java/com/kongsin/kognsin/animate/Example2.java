@@ -58,10 +58,10 @@ public class Example2 extends AppCompatActivity implements View.OnClickListener{
         BaseAnimationObject _root = new BaseAnimationObject(root);
         _root.height(tempRootHeight);
 
-        final BaseAnimationObject _content = new BaseAnimationObject(content);
+        BaseAnimationObject _content = new BaseAnimationObject(content);
         _content.height(tempContentHeight);
 
-        final BaseAnimationObject _button = new BaseAnimationObject(button);
+        BaseAnimationObject _button = new BaseAnimationObject(button);
         _button.stackToBottomOf(_content).marginTop(toDp(16)).start();
 
         AnimationQueue queue = new AnimationQueue(0, _root);
