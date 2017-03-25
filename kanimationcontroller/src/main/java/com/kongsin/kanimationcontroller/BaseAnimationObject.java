@@ -191,7 +191,7 @@ public class BaseAnimationObject {
         float value = _baseAnimationObject.getY() - _baseAnimationObject.getScaledHeight();
         if (getHeight() > getScaledHeight()){
             value += ((getHeight() - getScaledHeight())/2);
-        } else {
+        } else if (getHeight() < getScaledHeight()) {
             value -= ((getScaledHeight() - getHeight())/2);
         }
         animateSets.add(new Y(value));
@@ -202,7 +202,7 @@ public class BaseAnimationObject {
         float value = _baseAnimationObject.getY() + _baseAnimationObject.getScaledHeight();
         if (getHeight() > getScaledHeight()){
             value -= ((getHeight() - getScaledHeight())/2);
-        } else {
+        } else if (getHeight() < getScaledHeight()){
             value += ((getScaledHeight() - getHeight())/2);
         }
         animateSets.add(new Y(value));
@@ -213,7 +213,7 @@ public class BaseAnimationObject {
         float value = _baseAnimationObject.getX() + _baseAnimationObject.getScaledWidth();
         if (getWidth() > getScaledWidth()){
             value -= ((getWidth() - getScaledWidth())/2);
-        } else {
+        } else if (getWidth() < getScaledWidth()) {
             value += ((getScaledWidth() - getWidth())/2);
         }
         animateSets.add(new X(value));
@@ -224,7 +224,7 @@ public class BaseAnimationObject {
         float value = _baseAnimationObject.getX() - _baseAnimationObject.getScaledWidth();
         if (getWidth() > getScaledWidth()){
             value += ((getWidth() - getScaledWidth())/2);
-        } else {
+        } else if (getWidth() < getScaledWidth()){
             value -= ((getScaledWidth() - getWidth())/2);
         }
         animateSets.add(new X(value));
