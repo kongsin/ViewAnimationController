@@ -1,5 +1,7 @@
 # ViewAnimatorController
 
+##### Note : RelativeLayout is friendly with KAnimationController ^+++^
+
 ![Sample Image](https://github.com/kongsin/SlideTab/blob/master/preview.gif)
 ![Sample Image](https://github.com/kongsin/ViewAnimatorController/blob/master/videotogif_2017.03.19_04.04.53.gif)
 
