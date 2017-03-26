@@ -24,8 +24,8 @@ public class AnimationQueue implements Animator.AnimatorListener {
 
     }
 
-    public AnimationQueue(int startDaelayTime, BaseAnimationObject animationControl){
-        nextQueue(startDaelayTime, animationControl);
+    public AnimationQueue(int delayTime, BaseAnimationObject animationControl){
+        nextQueue(delayTime, animationControl);
     }
 
     public AnimationQueue startByQueue(){
@@ -115,8 +115,8 @@ public class AnimationQueue implements Animator.AnimatorListener {
 
     }
 
-    public void setCallback(AnimatedCallback animateCallbacl) {
-        this.mAnimateCallbacl = animateCallbacl;
+    public void setCallback(AnimatedCallback animateCallback) {
+        this.mAnimateCallbacl = animateCallback;
     }
 
     public interface AnimatedCallback {
