@@ -6,6 +6,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.kongsin.kanimationcontroller.AnimationQueue;
 import com.kongsin.kanimationcontroller.BaseAnimationObject;
@@ -13,7 +14,8 @@ import com.kongsin.kanimationcontroller.BaseAnimationObject;
 public class Example2 extends AppCompatActivity implements View.OnClickListener{
 
     private boolean isCollapse = false;
-    private LinearLayout content, root;
+    private RelativeLayout root;
+    private LinearLayout content;
     private Button button;
     private int tempRootHeight;
     private int tempContentHeight;
@@ -22,7 +24,7 @@ public class Example2 extends AppCompatActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_example2);
-        root = (LinearLayout) findViewById(R.id.root_layout);
+        root = (RelativeLayout) findViewById(R.id.root_layout);
         content = (LinearLayout) findViewById(R.id.content_group);
         button = (Button) findViewById(R.id.button);
         root.postDelayed(new Runnable() {
@@ -62,7 +64,7 @@ public class Example2 extends AppCompatActivity implements View.OnClickListener{
         _content.height(tempContentHeight);
 
         BaseAnimationObject _button = new BaseAnimationObject(button);
-        _button.stackToBottomOf(_content).marginTop(toDp(16)).start();
+        _button.stackToBottomOf(_content).marginTop(toDp(8));
 
         AnimationQueue queue = new AnimationQueue(0, _root);
         queue.nextQueue(0, _content);
