@@ -7,12 +7,11 @@
     tools:context="com.kongsin.kognsin.animate.Example2"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#6d8eaf"
-        android:orientation="vertical"
-        android:padding="16dp"
+        android:padding="8dp"
         android:gravity="center"
         android:id="@+id/root_layout">
 
@@ -40,8 +39,10 @@
             android:layout_marginTop="8dp"
             android:layout_width="100dp"
             android:layout_height="50dp"
+            android:layout_below="@id/content_group"
+            android:layout_centerHorizontal="true"
             android:text="button"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>
